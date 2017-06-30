@@ -1,4 +1,7 @@
-﻿namespace fsrandomflow
+﻿//Copyright 2017 Barend Venter
+//This code is licensed under the MIT license, see LICENSE
+
+namespace fsrandomflow
     open System.Collections.Generic
 
     /// A random variable of a particular type. Don't implement this interface, use the RVar combinators instead.

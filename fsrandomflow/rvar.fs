@@ -1,4 +1,4 @@
-﻿//Copyright 2017, Barend Venter
+﻿//Copyright 2017 Barend Venter
 //Licensed under the MIT license, see LICENSE
 
 namespace fsrandomflow
@@ -17,48 +17,80 @@ type StdUniformClass() =
             rsource.MoveNext() |> ignore;
             res
 
+type MappedVar<'T,'U>(BaseVar : RVar<'T>, MapFn : 'T -> 'U) = 
+    interface RVar<'U> with
+        override this.sample rsource = MapFn(BaseVar.sample(rsource))
+
+type ApplyVar<'T,'U>(BaseVar : RVar<'T -> 'U>, ArgVar : RVar<'T>) =
+    interface RVar<'U> with
+        override this.sample rsource = 
+            let f = BaseVar.sample(rsource)
+            let v = ArgVar.sample(rsource)
+            f v
+
+type BindVar<'T,'U>(BaseVar : RVar<'T>, Kleisli : 'T -> RVar<'U>) = 
+    interface RVar<'U> with
+        override this.sample rsource =
+            let v = BaseVar.sample(rsource)
+            (Kleisli v).sample(rsource)
+
+type ConstVar<'T>(v) =
+    interface RVar<'T> with
+        override this.sample rsource = v
+
+type RandomlyBuilder() =
+    member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>
+    member this.Return(v) = ConstVar(v) :> RVar<'T>
+    member this.ReturnFrom(v) = v
+    member this.Delay(f) = f()
+    member this.Run(v) = v
+    member this.Combine(v1, v2) = v2
+    member this.For(vs, f) = Seq.map f vs
+    //member this.TryFinally 
+    //member this.TryWith
+    //member this.Using
+    //member this.While
+    member this.Yield(v) = ConstVar(v) :> RVar<'T>
+    member this.YieldFrom(v) = v
+
+
 module RVar =
+    let randomly = RandomlyBuilder()
+
     ///This random variable exposes the underlying uniformly-distributed values produced by the random source.
     let StdUniform = StdUniformClass() :> RVar<int>
 
-    type MappedVar<'T,'U>(BaseVar : RVar<'T>, MapFn : 'T -> 'U) = 
-        interface RVar<'U> with
-            override this.sample rsource = MapFn(BaseVar.sample(rsource))
 
     let map f v = MappedVar(v,f) :> RVar<'T>
 
-    type ApplyVar<'T,'U>(BaseVar : RVar<'T -> 'U>, ArgVar : RVar<'T>) =
-        interface RVar<'U> with
-            override this.sample rsource = 
-                let f = BaseVar.sample(rsource)
-                let v = ArgVar.sample(rsource)
-                f v
 
     let apply vv vf = ApplyVar(vf,vv) :> RVar<'T>
 
-    type BindVar<'T,'U>(BaseVar : RVar<'T>, Kleisli : 'T -> RVar<'U>) = 
-        interface RVar<'U> with
-            override this.sample rsource =
-                let v = BaseVar.sample(rsource)
-                (Kleisli v).sample(rsource)
-
     let concatMap f v = BindVar(v,f) :> RVar<'T>
 
+    //At this point, the builder would be nice to have
     type TakeVar<'T>(BaseVar : RVar<'T>, count : int) =
         interface RVar<'T array> with
             override this.sample rsource = 
                 (fun _ -> BaseVar.sample(rsource))
                 |> Array.init count
 
+    let constant v = ConstVar(v) :> RVar<'T>
+
+    type RandomlyBuilder() =
+        member this.Bind(comp,func) = concatMap
+    
     let take count v = TakeVar(v,count) :> RVar<'T array>
 
-    let zip v1 v2 =
-        v1
-        |> map (fun x -> (fun y -> (x,y)))
-        |> apply v2 :> RVar<'T * 'U>
+    let zip v1 v2 = randomly {
+            let! v1' = v1
+            let! v2' = v2
+            return (v1',v2')
+        }
 
-    type ConstVar<'T>(v) =
-        interface RVar<'T> with
-            override this.sample rsource = v
-
-    let constant v = ConstVar(v) :> RVar<'T>
+    let zip3 v1 v2 v3 = randomly {
+            let! v1' = v1
+            let! v2' = v2
+            let! v3' = v3
+            return (v1',v2',v3')
+        }

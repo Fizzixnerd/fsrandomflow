@@ -1,5 +1,5 @@
 This F# library is intended as a generic and thread-safe alternative to System.Random, which supports operations such as "map".
 
-This is still in very early stages, but the basic functionality is there.
+This is still in very early stages, but the basic functionality is there, including computational workflows.
 
-Computational workflow syntax is to be supported soon.
+Parallel evalution primitives to come next, and some more distributions.

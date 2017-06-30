@@ -1,7 +1,6 @@
-﻿// Learn more about F# at http://fsharp.org. See the 'F# Tutorial' project
-// for more guidance on F# programming.
+﻿// Copyright 2017 Barend Venter
+// This code is licensed under the MIT license, see LICENSE
 
 #load "RVar.fs"
 #load "twister.fs"
 open fsrandomflow
-
