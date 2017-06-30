@@ -8,8 +8,7 @@ The provided random computations are built to be entirely deterministic on the o
 
 Unlike ```System.Random```, a random variable can only produce one type of value, but the type is completely generic and operations like ```map``` are supported.
 
-A workflow builder is provided to give satisfying syntax to combine 
-This F# library is intended as a generic and thread-safe alternative to System.Random, which supports operations such as "map".
+A workflow builder is provided to give lightweight syntax for these combinations, as well as operators for transforming values in the piped style.
 
 ## Example
 
