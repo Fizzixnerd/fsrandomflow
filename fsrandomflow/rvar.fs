@@ -55,20 +55,18 @@ type RandomlyBuilder() =
 
 
 module RVar =
+    ///A random computation to be evaluated with a random seed supplied at sample time
     let randomly = RandomlyBuilder()
 
     ///This random variable exposes the underlying uniformly-distributed values produced by the random source.
     let StdUniform = StdUniformClass() :> RVar<int>
 
-
     let map f v = MappedVar(v,f) :> RVar<'T>
-
 
     let apply vv vf = ApplyVar(vf,vv) :> RVar<'T>
 
     let concatMap f v = BindVar(v,f) :> RVar<'T>
 
-    //At this point, the builder would be nice to have
     type TakeVar<'T>(BaseVar : RVar<'T>, count : int) =
         interface RVar<'T array> with
             override this.sample rsource = 
@@ -81,6 +79,24 @@ module RVar =
         member this.Bind(comp,func) = concatMap
     
     let take count v = TakeVar(v,count) :> RVar<'T array>
+    
+    ///This random variable simulates a coin flip ("Bernoulli trial").
+    let CoinFlip = map (fun n -> n%2 = 0) StdUniform
+
+    let randomSignInt v = randomly {
+            let! flip = CoinFlip
+            return if flip then v else -v
+            }
+
+    let randomSignDouble v = randomly {
+            let! flip = CoinFlip
+            return if flip then v else -1.0 * v
+            }
+
+    let randomSignFloat v = randomly {
+            let! flip = CoinFlip
+            return if flip then v else -1.0f * v
+            }
 
     let zip v1 v2 = randomly {
             let! v1' = v1
