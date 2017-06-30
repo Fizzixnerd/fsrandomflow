@@ -28,5 +28,20 @@ namespace fsrandomflow
         ///Create a random variable that samples two random variables, one after the other
         val zip : RVar<'T> -> RVar<'U> -> RVar<'T * 'U>
 
+        ///Create a random variable that samples three random variables, one after the other
+        val zip3 : RVar<'T> -> RVar<'U> -> RVar<'V> -> RVar<'T * 'U * 'V>
+
         ///Create a random variable that ignores the underlying stream and simply returns a constant (unit function).
         val constant : 'T -> RVar<'T>
+
+        ///Perform a single coin flip ("Bernoulli trial")
+        val CoinFlip : RVar<bool>
+
+        ///Randomly flip the sign of an integer
+        val randomSignInt : int -> RVar<int>
+
+        ///Randomly flip the sign of a double
+        val randomSignDouble : float -> RVar<float>
+
+        ///Randomly flip the sign of a float
+        val randomSignFloat : float32 -> RVar<float32>
