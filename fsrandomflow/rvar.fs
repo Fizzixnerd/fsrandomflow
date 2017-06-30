@@ -50,8 +50,6 @@ type RandomlyBuilder() =
     //member this.TryWith
     //member this.Using
     //member this.While
-    member this.Yield(v) = ConstVar(v) :> RVar<'T>
-    member this.YieldFrom(v) = v
 
 
 module RVar =
@@ -83,20 +81,20 @@ module RVar =
     ///This random variable simulates a coin flip ("Bernoulli trial").
     let CoinFlip = map (fun n -> n%2 = 0) StdUniform
 
-    let randomSignInt v = randomly {
+    let RandomlySignedInt v = randomly {
             let! flip = CoinFlip
             return if flip then v else -v
-            }
+        }
 
-    let randomSignDouble v = randomly {
+    let RandomlySignedDouble v = randomly {
             let! flip = CoinFlip
             return if flip then v else -1.0 * v
-            }
+        }
 
-    let randomSignFloat v = randomly {
+    let RandomlySignedFloat v = randomly {
             let! flip = CoinFlip
             return if flip then v else -1.0f * v
-            }
+        }
 
     let zip v1 v2 = randomly {
             let! v1' = v1
@@ -110,3 +108,31 @@ module RVar =
             let! v3' = v3
             return (v1',v2',v3')
         }
+
+    let rec sequence (xs : RVar<'T> seq) = randomly {
+            if Seq.isEmpty xs then return Seq.empty
+            else let! nextOut = Seq.head xs
+                 let! nextTodo = sequence (Seq.tail xs)
+                 return seq {
+                    yield nextOut
+                    yield! nextTodo
+                 } 
+            }
+
+    let rec UniformZeroAndUpBelow n = 
+        let max = 0x7FFFFFFF
+        let cutoff = max - (max % n)
+        randomly {
+            let! res = StdUniform
+            if res > cutoff then return! UniformZeroAndUpBelow n
+            else return res % n
+            }
+
+    let UniformInt(n1, n2) =
+        let nmin = min n1 n2
+        let nmax = max n1 n2
+        let range = nmax - nmin + 1
+        randomly {
+            let! res = UniformZeroAndUpBelow range
+            return res + nmin
+            }
