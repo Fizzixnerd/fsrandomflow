@@ -1,6 +1,6 @@
-#fsrandomflow
+# fsrandomflow
 
-##Introduction
+## Introduction
 
 **fsrandomflow** allows random computations to be expressed without explicitly sampling a random generator until the end. This means that you can seed the generator once you are ready to run the full computation.
 
@@ -11,7 +11,7 @@ Unlike ```System.Random```, a random variable can only produce one type of value
 A workflow builder is provided to give satisfying syntax to combine 
 This F# library is intended as a generic and thread-safe alternative to System.Random, which supports operations such as "map".
 
-##Example
+## Example
 
 Say you want to roll an attribute score in D&D 5th edition, and your DM is very generous and wants everyone to have high stats. She tells everyone that if they roll a 1, they are allowed to reroll, and they roll a fourth die, which allows them to drop their lowest roll entirely. ***fsrandomflow*** lets this be expressed as an ```RVar<int>```:
 
