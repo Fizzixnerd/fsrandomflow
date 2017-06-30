@@ -13,7 +13,7 @@ This F# library is intended as a generic and thread-safe alternative to System.R
 
 ## Example
 
-Say you want to roll an attribute score in D&D 5th edition, and your DM is very generous and wants everyone to have high stats. She tells everyone that if they roll a 1, they are allowed to reroll, and they roll a fourth die, which allows them to drop their lowest roll entirely. ***fsrandomflow*** lets this be expressed as an ```RVar<int>```:
+Say you want to roll an attribute score in D&D 5th edition, and your DM is very generous and wants everyone to have high stats. She tells everyone that if they roll a 1, they are allowed to reroll, and they roll a fourth die, which allows them to drop their lowest roll entirely. **fsrandomflow** lets this be expressed as an ```RVar<int>```:
 
 ```F#
 ///Roll 4 d6, reroll the 1s, drop the lowest
