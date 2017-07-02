@@ -45,10 +45,10 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <None Include="Script.fsx" />
-    <Compile Include="rvar.fsi" />
-    <Compile Include="rvar.fs" />
     <Compile Include="twister.fsi" />
     <Compile Include="twister.fs" />
+    <Compile Include="rvar.fsi" />
+    <Compile Include="rvar.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">12</MinimumVisualStudioVersion>

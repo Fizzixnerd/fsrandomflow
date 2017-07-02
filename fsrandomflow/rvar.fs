@@ -4,6 +4,7 @@
 namespace fsrandomflow
 
 open System.Collections.Generic
+open Twister
 
 type RVar<'T> =
     /// Using a stream of random values, generate an example value of type 'T
@@ -38,18 +39,27 @@ type ConstVar<'T>(v) =
     interface RVar<'T> with
         override this.sample rsource = v
 
+///This threads a different random generator through some branch, either to run it in parallel 
+/// or to allow the computation to be safely aborted. It always steps the underlying generator 
+/// exactly once.
+type Spark<'T>(v : RVar<'T>) =
+    static member branch n = twister(n) //TODO: Use dynamic creation, don't just change the seed
+    interface RVar<'T> with
+        override this.sample rsource = 
+            let newBranch = Spark<_>.branch rsource.Current
+            v.sample(newBranch.GetEnumerator())
+
+type SequenceVar<'T>(vs: RVar<'T> seq) =
+    interface RVar<'T seq> with
+        override this.sample rsource = Seq.map(fun (x: RVar<'T>) -> x.sample rsource) vs
+
 type RandomlyBuilder() =
     member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>
     member this.Return(v) = ConstVar(v) :> RVar<'T>
     member this.ReturnFrom(v) = v
     member this.Delay(f) = f()
     member this.Run(v) = v
-    member this.Combine(v1, v2) = v2
-    member this.For(vs, f) = Seq.map f vs
-    //member this.TryFinally 
-    //member this.TryWith
-    //member this.Using
-    //member this.While
+    member this.For(vs, f) = SequenceVar(Seq.map f vs) 
 
 
 module RVar =
@@ -109,15 +119,7 @@ module RVar =
             return (v1',v2',v3')
         }
 
-    let rec sequence (xs : RVar<'T> seq) = randomly {
-            if Seq.isEmpty xs then return Seq.empty
-            else let! nextOut = Seq.head xs
-                 let! nextTodo = sequence (Seq.tail xs)
-                 return seq {
-                    yield nextOut
-                    yield! nextTodo
-                 } 
-            }
+    let sequence (xs : RVar<'T> seq) = SequenceVar(xs) :> RVar<'T seq>
 
     let rec UniformZeroAndUpBelow n = 
         let max = 0x7FFFFFFF
@@ -126,7 +128,7 @@ module RVar =
             let! res = StdUniform
             if res > cutoff then return! UniformZeroAndUpBelow n
             else return res % n
-            }
+        }
 
     let UniformInt(n1, n2) =
         let nmin = min n1 n2
@@ -135,4 +137,4 @@ module RVar =
         randomly {
             let! res = UniformZeroAndUpBelow range
             return res + nmin
-            }
+        }
