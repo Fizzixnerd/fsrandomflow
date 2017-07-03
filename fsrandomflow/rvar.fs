@@ -179,7 +179,7 @@ module RVar =
         ziggarut normalZiggarutSteps standardNormalPdf (normalFallback(normalZiggarutSteps.[1]))
         |> concatMap RandomlySignedDouble
 
-    let Normal mean stdev = map (fun outcome -> mean + stdev * outcome) StandardNormal
+    let Normal(mean,stdev) = map (fun outcome -> mean + stdev * outcome) StandardNormal
 
 //    let StandardNormal =
 //        UniformZeroToOne

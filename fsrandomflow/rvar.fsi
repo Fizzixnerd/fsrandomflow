@@ -82,4 +82,4 @@ namespace fsrandomflow
         val StandardNormal : RVar<float>
 
         ///Randomly gets a double from a normal distribution with the given mean and standard deviation
-        val Normal : float -> float -> RVar<float>
+        val Normal : (float * float) -> RVar<float>
