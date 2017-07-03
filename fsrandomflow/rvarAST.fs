@@ -9,8 +9,8 @@ module RVarAST =
     type StdUniformClass() =
         interface RVar<int> with
             override this.sample(rsource : IEnumerator<int>) = 
-                let res = rsource.Current;
-                rsource.MoveNext() |> ignore;
+                let res = rsource.Current
+                rsource.MoveNext() |> ignore
                 res
 
     type MappedVar<'T,'U>(BaseVar : RVar<'T>, MapFn : 'T -> 'U) = 
@@ -67,7 +67,5 @@ module RVarAST =
         member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>
         member this.Return(v) = ConstVar(v) :> RVar<'T>
         member this.ReturnFrom(v) = v
-        member this.Delay(f) = f()
-        member this.Run(v) = v
-        member this.For(vs, f) = SequenceVar(Seq.map f vs) 
+        member this.For(vs, f) = SequenceVar(Seq.map f vs) :> RVar<'T seq>
 
