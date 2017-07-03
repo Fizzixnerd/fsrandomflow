@@ -170,6 +170,14 @@ module RVar =
             let! U2 = UniformAboveZeroBelowOne
             return Math.Sqrt(-2.0*Math.Log(U1))*Math.Cos(2.0*Math.PI*U2)
         }
+
+    let sequenceParallel (xs: RVar<'T> seq) = randomly {
+            let! seeds = repeat StdUniform
+            let pending = Seq.zip seeds xs |> Seq.toArray
+            return Array.Parallel.map(fun (seed, (x: RVar<'T>)) -> x.sample(twister(seed).GetEnumerator())) pending
+        }
+
+    let takeParallel count xs = sequenceParallel (Seq.replicate count xs) 
 //
 //    //Rather than implementing the probit function, use a precomputed table
 //    let normalZiggarutStepsRaw = 

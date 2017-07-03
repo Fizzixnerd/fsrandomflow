@@ -30,7 +30,7 @@ namespace fsrandomflow
         val concatMap : ('T -> RVar<'U>) -> RVar<'T> -> RVar<'U>
 
         ///Sample another random variable a given number of times, rather than just once
-        val take : int -> RVar<'T> -> RVar<'T array>
+        val take : int -> RVar<'T> -> RVar<'T []>
 
         ///Create a random variable that samples another random variables infinite times
         val repeat : RVar<'T> -> RVar<'T seq>
@@ -83,3 +83,9 @@ namespace fsrandomflow
 
         ///Randomly gets a double from a normal distribution with the given mean and standard deviation
         val Normal : (float * float) -> RVar<float>
+
+        ///For a finite input of random variables, sample them all in parallel and return the results in an array
+        val sequenceParallel : RVar<'T> seq -> RVar<'T []>
+
+        ///Sample a random variable a given number of times in parallel
+        val takeParallel : int -> RVar<'T> -> RVar<'T []>
