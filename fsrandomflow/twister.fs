@@ -77,11 +77,11 @@ module Twister =
         (seed,0)
         |> Seq.unfold(
             fun (prev,i) ->
-                if i < n
-                then
-                    let next = f * (prev ^^^ (prev >>> (w-2))) + i
-                    Some(next, (next,i+1))
-                else None
+                    if i < n
+                    then
+                        let next = f * (prev ^^^ (prev >>> (w-2))) + i
+                        Some(next, (next,i+1))
+                    else None
                 )
         |> Seq.iteri(fun v i -> arr.[i] <- v)
 

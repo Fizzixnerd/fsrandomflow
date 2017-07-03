@@ -5,6 +5,7 @@ namespace fsrandomflow
 
 open System.Collections.Generic
 open Twister
+open System
 
 type RVar<'T> =
     /// Using a stream of random values, generate an example value of type 'T
@@ -47,7 +48,16 @@ type Spark<'T>(v : RVar<'T>) =
     interface RVar<'T> with
         override this.sample rsource = 
             let newBranch = Spark<_>.branch rsource.Current
+            ignore(rsource.MoveNext())
             v.sample(newBranch.GetEnumerator())
+
+type Streaming<'T>(v : RVar<'T>) = 
+    interface RVar<'T seq> with
+        override this.sample rsource = 
+            let newBranch = Spark<_>.branch rsource.Current
+            ignore (rsource.MoveNext())
+            newBranch.GetEnumerator()
+            |> Seq.unfold (fun gen -> Some(v.sample(gen),gen))    
 
 type SequenceVar<'T>(vs: RVar<'T> seq) =
     interface RVar<'T seq> with
@@ -69,6 +79,10 @@ module RVar =
     ///This random variable exposes the underlying uniformly-distributed values produced by the random source.
     let StdUniform = StdUniformClass() :> RVar<int>
 
+    let runrvar seed (rvar : RVar<'T>) = rvar.sample(twister(seed).GetEnumerator())
+    
+    let runrvarIO rvar = rvar |> runrvar System.DateTime.Now.Millisecond
+     
     let map f v = MappedVar(v,f) :> RVar<'T>
 
     let apply vv vf = ApplyVar(vf,vv) :> RVar<'T>
@@ -80,6 +94,8 @@ module RVar =
             override this.sample rsource = 
                 (fun _ -> BaseVar.sample(rsource))
                 |> Array.init count
+
+    let repeat v = Streaming(v) :> RVar<'T seq>
 
     let constant v = ConstVar(v) :> RVar<'T>
 
@@ -121,8 +137,21 @@ module RVar =
 
     let sequence (xs : RVar<'T> seq) = SequenceVar(xs) :> RVar<'T seq>
 
+    let rec filter f x = randomly {
+        let! result = x
+        if f result then return result
+        else return! filter f x
+    }
+
+    let rec filterRandomly (f : 'T -> RVar<bool>) (x : RVar<'T>) = randomly {
+        let! result = x
+        let! outcome = f result
+        if outcome then return result
+        else return! filterRandomly f x
+    }
+
     let rec UniformZeroAndUpBelow n = 
-        let max = 0x7FFFFFFF
+        let max = System.Int32.MaxValue
         let cutoff = max - (max % n)
         randomly {
             let! res = StdUniform
@@ -138,3 +167,33 @@ module RVar =
             let! res = UniformZeroAndUpBelow range
             return res + nmin
         }
+
+    let UniformZeroToOne = randomly {
+            let max = float System.Int32.MaxValue
+            let! actual = StdUniform
+            return float actual / max
+        }
+
+    let UniformZeroToBelowOne = filter (fun x -> x < 1.0) UniformZeroToOne
+        
+    let probability p = 
+        if p >= 1.0 then constant true
+        else if p <= 0.0 then constant false
+        else randomly {
+            let! outcome = UniformZeroToOne
+            return outcome < p
+        }
+//
+//    let standardNormalPdf x = (Math.E ** (0.5 * (x * x))) / Math.Sqrt(2.0 * Math.PI)
+//
+//    let ziggarut layers tailfn = randomly {
+//        let! layer = UniformInt(0,Seq.length layers)
+//        let zeroToOneExclusive = filter (fun x -> x < 1) UniformZeroToOne
+//        let xi = Seq.item layer layers
+//        let! x = RVar.map(fun x -> x * (Seq.item layer layers)) zeroToOneExclusive
+
+//    let StandardNormal =
+//        UniformZeroToOne
+//        |> map (fun x -> x * 6.0)
+//        |> filterRandomly(fun y -> probability(standardNormalPdf y))
+//        |> concatMap RandomlySignedDouble

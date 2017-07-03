@@ -1,8 +1,8 @@
 ﻿// Copyright 2017 Barend Venter
 // This code is licensed under the MIT license, see LICENSE
 
-#load "RVar.fs"
 #load "twister.fs"
+#load "RVar.fs"
 open fsrandomflow
 open fsrandomflow.RVar
 
@@ -29,4 +29,9 @@ let dnd5eAttrRollHouseRules = randomly {
         let threeBestRolls = Array.sort initialRolls |> Seq.tail
         //Return the sum
         return Seq.sum threeBestRolls
+    }
+
+///Get a jagged random area underneath a triangle
+let jaggedSubarea = randomly {
+        for x in [1 .. 10] do return! RVar.UniformInt(1,x)
     }

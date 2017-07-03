@@ -13,6 +13,12 @@ namespace fsrandomflow
         ///This random variable exposes the underlying stream of uniformly distributed positive random integers
         val StdUniform : RVar<int>
 
+        ///Run a random variable using a given seed
+        val runrvar : int -> RVar<'T> -> 'T
+
+        ///Run a random variable using the current time from IO
+        val runrvarIO : RVar<'T> -> 'T
+
         ///Map a function over a random variable, yielding a new random variable
         val map : ('T -> 'U) -> RVar<'T> -> RVar<'U>
 
@@ -24,6 +30,9 @@ namespace fsrandomflow
 
         ///Sample another random variable a given number of times, rather than just once
         val take : int -> RVar<'T> -> RVar<'T array>
+
+        ///Create a random variable that samples another random variables infinite times
+        val repeat : RVar<'T> -> RVar<'T seq>
 
         ///Create a random variable that samples two random variables, one after the other
         val zip : RVar<'T> -> RVar<'U> -> RVar<'T * 'U>
@@ -37,6 +46,13 @@ namespace fsrandomflow
         ///For some sequence of random computations, make a random computation that runs the sequence in order
         val sequence : RVar<'T> seq -> RVar<'T seq>
 
+        ///Removes values that fail the given test from the random variable. If you remove all values, you will loop infinitely
+        val filter : ('T -> bool) -> RVar<'T> -> RVar<'T>
+
+        ///Removes values that fail a test from the random variable. The test is itself allowed to be randomized. If you remove all 
+        /// values, you will loop infinitely
+        val filterRandomly : ('T -> RVar<bool>) -> RVar<'T> -> RVar<'T>
+
         ///Perform a single coin flip (a "Bernoulli trial": this is the Bernoulli distribution)
         val CoinFlip : RVar<bool>
 
@@ -49,8 +65,16 @@ namespace fsrandomflow
         ///Randomly flip the sign of a float
         val RandomlySignedFloat : float32 -> RVar<float32>
 
-        ///Randomly gets a positive number (including 0) less than n
+        ///A non-negative integer less than n
         val UniformZeroAndUpBelow : int -> RVar<int>
 
-        ///Randomly gets a positive number inbetween the two given bounds, inclusive
+        ///An integer inbetween the two given bounds, inclusive
         val UniformInt : int * int -> RVar<int>
+
+        ///Randomly gets a double between 0 and 1, inclusive
+        val UniformZeroToOne : RVar<float>
+
+        //Still needs to be implemented, current incarnation of it is broken
+        //Use ziggarut method instead of trying to use naive rejection
+        //Randomly gets a double from the standard normal distribution
+        //val StandardNormal : RVar<double>
