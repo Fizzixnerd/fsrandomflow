@@ -104,6 +104,8 @@ module RVar =
             return res + nmin
         }
 
+    //[0,1], [0,1), (0,1], (0,1) intervals:
+
     let UniformZeroToOne = randomly {
             let max = float System.Int32.MaxValue
             let! actual = StdUniform
@@ -111,6 +113,19 @@ module RVar =
         }
 
     let UniformZeroToBelowOne = filter (fun x -> x < 1.0) UniformZeroToOne
+    
+    let UniformAboveZeroToOne = filter (fun x -> x < 1.0) UniformZeroToOne
+
+    let UniformAboveZeroBelowOne = filter (fun x -> x > 0.0 && x < 1.0) UniformZeroToOne
+    
+    let UniformInterval(minVal, maxVal, minOpen, maxOpen) = randomly {
+            let! outcome = if(minOpen) then if(maxOpen) then UniformAboveZeroBelowOne
+                                            else UniformAboveZeroToOne
+                           else if(maxOpen) then UniformZeroToBelowOne
+                                else UniformZeroToOne
+            let intervalSize = maxVal - minVal
+            return intervalSize * outcome + minVal
+        }
         
     let probability p = 
         if p >= 1.0 then constant true
@@ -180,6 +195,8 @@ module RVar =
         |> concatMap RandomlySignedDouble
 
     let Normal(mean,stdev) = map (fun outcome -> mean + stdev * outcome) StandardNormal
+
+    let Exponential(inverseScale) = map (fun x -> (-Math.Log(x))/inverseScale) UniformAboveZeroBelowOne
 
 //    let StandardNormal =
 //        UniformZeroToOne
