@@ -47,7 +47,9 @@
     <None Include="Script.fsx" />
     <Compile Include="twister.fsi" />
     <Compile Include="twister.fs" />
+    <Compile Include="types.fs" />
     <Compile Include="rvar.fsi" />
+    <Compile Include="rvarAST.fs" />
     <Compile Include="rvar.fs" />
   </ItemGroup>
   <PropertyGroup>

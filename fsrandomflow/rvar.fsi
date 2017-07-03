@@ -4,11 +4,12 @@
 namespace fsrandomflow
     open System.Collections.Generic
 
-    /// A random variable of a particular type. Don't implement this interface, use the RVar combinators instead.
-    [<Interface>]
-    type RVar<'T> =
-        ///Using a stream of random values, generate an example value of type 'T
-        abstract member sample : IEnumerator<int> -> 'T
+//    /// A random variable of a particular type. Don't implement this interface, use the RVar combinators instead.
+//    [<Interface>]
+//    type RVar<'T> =
+//        ///Using a stream of random values, generate an example value of type 'T
+//        abstract member sample : IEnumerator<int> -> 'T
+
     module RVar =
         ///This random variable exposes the underlying stream of uniformly distributed positive random integers
         val StdUniform : RVar<int>
@@ -73,6 +74,9 @@ namespace fsrandomflow
 
         ///Randomly gets a double between 0 and 1, inclusive
         val UniformZeroToOne : RVar<float>
+
+        ///A boolean, the chance of it being true is the given probability
+        val probability : float -> RVar<bool>
 
         //Still needs to be implemented, current incarnation of it is broken
         //Use ziggarut method instead of trying to use naive rejection

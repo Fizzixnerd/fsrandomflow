@@ -2,6 +2,8 @@
 // This code is licensed under the MIT license, see LICENSE
 
 #load "twister.fs"
+#load "types.fs"
+#load "RVarAST.fs"
 #load "RVar.fs"
 open fsrandomflow
 open fsrandomflow.RVar
