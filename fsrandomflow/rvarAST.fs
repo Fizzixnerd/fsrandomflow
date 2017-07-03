@@ -56,6 +56,12 @@ module RVarAST =
     type SequenceVar<'T>(vs: RVar<'T> seq) =
         interface RVar<'T seq> with
             override this.sample rsource = Seq.map(fun (x: RVar<'T>) -> x.sample rsource) vs
+
+    type TakeVar<'T>(BaseVar : RVar<'T>, count : int) =
+        interface RVar<'T array> with
+            override this.sample rsource = 
+                (fun _ -> BaseVar.sample(rsource))
+                |> Array.init count
             
     type RandomlyBuilder() =
         member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>

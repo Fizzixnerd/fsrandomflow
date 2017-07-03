@@ -25,19 +25,10 @@ module RVar =
 
     let concatMap f v = BindVar(v,f) :> RVar<'T>
 
-    type TakeVar<'T>(BaseVar : RVar<'T>, count : int) =
-        interface RVar<'T array> with
-            override this.sample rsource = 
-                (fun _ -> BaseVar.sample(rsource))
-                |> Array.init count
-
     let repeat v = Streaming(v) :> RVar<'T seq>
 
     let constant v = ConstVar(v) :> RVar<'T>
 
-    type RandomlyBuilder() =
-        member this.Bind(comp,func) = concatMap
-    
     let take count v = TakeVar(v,count) :> RVar<'T array>
     
     ///This random variable simulates a coin flip ("Bernoulli trial").
