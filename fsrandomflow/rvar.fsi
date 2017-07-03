@@ -78,7 +78,5 @@ namespace fsrandomflow
         ///A boolean, the chance of it being true is the given probability
         val probability : float -> RVar<bool>
 
-        //Still needs to be implemented, current incarnation of it is broken
-        //Use ziggarut method instead of trying to use naive rejection
-        //Randomly gets a double from the standard normal distribution
-        //val StandardNormal : RVar<double>
+        ///Randomly gets a double from the standard normal distribution
+        val StandardNormal : RVar<double>
