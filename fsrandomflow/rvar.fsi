@@ -79,4 +79,7 @@ namespace fsrandomflow
         val probability : float -> RVar<bool>
 
         ///Randomly gets a double from the standard normal distribution
-        val StandardNormal : RVar<double>
+        val StandardNormal : RVar<float>
+
+        ///Randomly gets a double from a normal distribution with the given mean and standard deviation
+        val Normal : float -> float -> RVar<float>
