@@ -53,7 +53,7 @@ let getStars n = randomly {
     }
 [<EntryPoint>]
 let main argv = 
-    let runner = if argv.Length < 2 then RVar.runrvarIO else RVar.runrvar (int(argv.[1]))
+    let runner = if argv.Length < 1 then RVar.runrvarIO else RVar.runrvar (int(argv.[0]))
     let stars = runner (getStars 1000)  
     let platform = new NGraphics.SystemDrawingPlatform()
     let canvas = platform.CreateImageCanvas(new NGraphics.Size(1.0,1.0), scale=1000.0)
