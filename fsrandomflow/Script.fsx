@@ -1,16 +1,13 @@
 ﻿// Copyright 2017 Barend Venter
 // This code is licensed under the MIT license, see LICENSE
 
+//Highlight this and right click "run in interactive" to open the library
 #load "twister.fs"
 #load "types.fs"
 #load "RVarAST.fs"
 #load "RVar.fs"
 open fsrandomflow
 open fsrandomflow.RVar
-
-///Sample an RVar; convenience function
-let runrvar (rvar : RVar<'T>) = 
-    rvar.sample(Twister.twister(System.DateTime.Now.Millisecond).GetEnumerator())
 
 ///Roll 4 d6, reroll the 1s, drop the lowest
 let dnd5eAttrRollHouseRules = randomly {
@@ -37,3 +34,9 @@ let dnd5eAttrRollHouseRules = randomly {
 let jaggedSubarea = randomly {
         for x in [1 .. 10] do return! RVar.UniformInt(1,x)
     }
+
+RVar.runrvar 1256343118 <| RVar.take 12 (RVar.oneOfWeighted (Seq.zip [1.0..10.0] [1..10]));;
+
+RVar.runrvar 1023092 <| RVar.oneOfWeighted (Seq.zip [55.0; 1.0; 2.0] [1; 2; 3])
+
+RVar.runrvar 1023092 <| RVar.oneOfWeighted (Seq.zip [10.0; 50.0] [1; 2])

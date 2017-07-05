@@ -59,13 +59,11 @@ module RVarAST =
 
     type TakeVar<'T>(BaseVar : RVar<'T>, count : int) =
         interface RVar<'T array> with
-            override this.sample rsource = 
-                (fun _ -> BaseVar.sample(rsource))
-                |> Array.init count
-            
+            override this.sample rsource = Array.init count (fun _ -> BaseVar.sample(rsource))
+    
     type RandomlyBuilder() =
-        member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>
-        member this.Return(v) = ConstVar(v) :> RVar<'T>
-        member this.ReturnFrom(v) = v
-        member this.For(vs, f) = SequenceVar(Seq.map f vs) :> RVar<'T seq>
-
+        interface IRandomlyBuilder with
+            member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>
+            member this.Return(v) = ConstVar(v) :> RVar<'T>
+            member this.ReturnFrom(v) = v
+            member this.For(vs, f) = SequenceVar(Seq.map f vs) :> RVar<'T seq>

@@ -11,6 +11,8 @@ namespace fsrandomflow
 //        abstract member sample : IEnumerator<int> -> 'T
 
     module RVar =
+        val randomly : IRandomlyBuilder
+
         ///This random variable exposes the underlying stream of uniformly distributed positive random integers
         val StdUniform : RVar<int>
 
@@ -32,6 +34,9 @@ namespace fsrandomflow
         ///Sample another random variable a given number of times, rather than just once
         val take : int -> RVar<'T> -> RVar<'T []>
 
+        ///Sample a random variable a given number of times in parallel
+        val takeParallel : int -> RVar<'T> -> RVar<'T []>
+
         ///Create a random variable that samples another random variables infinite times
         val repeat : RVar<'T> -> RVar<'T seq>
 
@@ -47,11 +52,14 @@ namespace fsrandomflow
         ///For some sequence of random computations, make a random computation that runs the sequence in order
         val sequence : RVar<'T> seq -> RVar<'T seq>
 
+        ///For a finite input of random variables, sample them all in parallel and return the results in an array
+        val sequenceParallel : RVar<'T> seq -> RVar<'T []>
+
         ///Removes values that fail the given test from the random variable. If you remove all values, you will loop infinitely
         val filter : ('T -> bool) -> RVar<'T> -> RVar<'T>
 
         ///Removes values that fail a test from the random variable. The test is itself allowed to be randomized. If you remove all 
-        /// values, you will loop infinitely
+        /// values, you will loop infinitely.
         val filterRandomly : ('T -> RVar<bool>) -> RVar<'T> -> RVar<'T>
 
         ///Perform a single coin flip (a "Bernoulli trial": this is the Bernoulli distribution)
@@ -75,17 +83,29 @@ namespace fsrandomflow
         ///Randomly gets a double between 0 and 1, inclusive
         val UniformZeroToOne : RVar<float>
 
+        ///Randomly gets a double within an interval, allowing for either bound to be open or closed
+        val UniformInterval : float * float * bool * bool -> RVar<float>
+
+        ///Gets a Double bound inside a given closed interval
+        val UniformIntervalClosed : float * float -> RVar<float>
+
+        ///Gets a double bound inside a given open interval
+        val UniformIntervalOpen : float * float -> RVar<float>
+
         ///A boolean, the chance of it being true is the given probability
         val probability : float -> RVar<bool>
+
+        ///Randomly picks one possibility out many
+        val oneOf : seq<'T> -> RVar<'T>
+        
+        ///Randomly picks one possibility out of many, with given probabilities (normalized to 1)
+        val oneOfWeighted : seq<float * 'T> -> RVar<'T>
+
+        ///Shuffles a finite input. A new array is allocated to hold the output.
+        val shuffle : seq<'T> -> RVar<'T []>
 
         ///Randomly gets a double from the standard normal distribution
         val StandardNormal : RVar<float>
 
         ///Randomly gets a double from a normal distribution with the given mean and standard deviation
         val Normal : (float * float) -> RVar<float>
-
-        ///For a finite input of random variables, sample them all in parallel and return the results in an array
-        val sequenceParallel : RVar<'T> seq -> RVar<'T []>
-
-        ///Sample a random variable a given number of times in parallel
-        val takeParallel : int -> RVar<'T> -> RVar<'T []>
