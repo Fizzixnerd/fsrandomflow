@@ -1,5 +1,6 @@
-﻿// Learn more about F# at http://fsharp.org
-// See the 'F# Tutorial' project for more help.
+﻿// Copyright 2017, Barend Venter
+// This code is liscensed under the MIT liscense, see LISCENSE
+// You will need praeclarum's NGraphics library to run this demo, get it via NuGet
 
 open fsrandomflow
 open fsrandomflow.RVar
