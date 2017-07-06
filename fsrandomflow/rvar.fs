@@ -9,19 +9,20 @@ module RVar =
     open System
     open RVarAST
 
-    ///A random computation to be evaluated with a random seed supplied at sample time
     let randomly = RandomlyBuilder() :> IRandomlyBuilder
 
-    ///This random variable exposes the underlying uniformly-distributed values produced by the random source.
     let StdUniform = StdUniformClass() :> RVar<int>
 
     let runrvar seed (rvar : RVar<'T>) = rvar.sample(twister(seed).GetEnumerator())
     
-    //Note: if you use System.DateTime.Now.Millisecond, this causes a compiler warning
-    //Compiler should be able to see that runrvar takes an int, which is immutable, and thus no mutation is possible
-    //It doesn't, though
-    let runrvarIO rvar = rvar |> runrvar (let x = System.DateTime.Now in x.Millisecond)
-     
+    //Note: if you use System.DateTime.Now.Ticks directly
+    // then F# will emit a compiler warning
+    //This warning warns us about something that we want anyway
+    // (that we won't be able to set the Ticks property) so
+    // use the spurious let to supress the warning.
+    let runrvarIO rvar = 
+        runrvar (int(let x = System.DateTime.Now in x.Ticks)) rvar
+    
     let map f v = MappedVar(v,f) :> RVar<'T>
 
     let apply vv vf = ApplyVar(vf,vv) :> RVar<'T>
@@ -34,7 +35,6 @@ module RVar =
 
     let take count v = TakeVar(v,count) :> RVar<'T array>
     
-    ///This random variable simulates a coin flip ("Bernoulli trial").
     let CoinFlip = map (fun n -> n%2 = 0) StdUniform
 
     let RandomlySignedInt v = randomly {
@@ -65,7 +65,10 @@ module RVar =
             return (v1',v2',v3')
         }
 
-    let sequence (xs : RVar<'T> seq) = SequenceVar(xs) :> RVar<'T seq>
+    let sequence (xs : RVar<'T> seq) = map Array.ofSeq (SequenceVar(xs))
+    
+    let sequenceStreaming (xs : RVar<'T> seq) = 
+        Spark(SequenceVar(xs)) :> RVar<'T seq>
 
     //Parallel evaluation:
 

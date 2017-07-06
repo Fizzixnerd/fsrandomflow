@@ -40,3 +40,5 @@ RVar.runrvar 1256343118 <| RVar.take 12 (RVar.oneOfWeighted (Seq.zip [1.0..10.0]
 RVar.runrvar 1023092 <| RVar.oneOfWeighted (Seq.zip [55.0; 1.0; 2.0] [1; 2; 3])
 
 RVar.runrvar 1023092 <| RVar.oneOfWeighted (Seq.zip [10.0; 50.0] [1; 2])
+
+Seq.map

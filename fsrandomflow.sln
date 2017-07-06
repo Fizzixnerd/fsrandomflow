@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{46998C44
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "starfield", "demos\starfield\starfield.fsproj", "{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fsrandomflow.Coherent", "fsrandomflow.Coherent\fsrandomflow.Coherent.fsproj", "{B35FE2BF-3841-4719-BAF2-7C5F04AA2222}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "canon", "demos\canon\canon.fsproj", "{9EC7A141-F19C-43C0-84B8-03CE114D9B15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +27,20 @@ Global
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B35FE2BF-3841-4719-BAF2-7C5F04AA2222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B35FE2BF-3841-4719-BAF2-7C5F04AA2222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B35FE2BF-3841-4719-BAF2-7C5F04AA2222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B35FE2BF-3841-4719-BAF2-7C5F04AA2222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04} = {46998C44-450B-4BD4-B6BB-35B6F4CCB012}
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15} = {46998C44-450B-4BD4-B6BB-35B6F4CCB012}
 	EndGlobalSection
 EndGlobal

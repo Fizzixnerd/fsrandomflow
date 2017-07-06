@@ -11,55 +11,211 @@ namespace fsrandomflow
 //        abstract member sample : IEnumerator<int> -> 'T
 
     module RVar =
+        ///A builder for expressions of type RVar
         val randomly : IRandomlyBuilder
 
-        ///This random variable exposes the underlying stream of uniformly distributed positive random integers
+        ///<summary>A random integer from <c>0</c> to <c>System.Int32.MaxValue</c>.
+        ///</summary>
+        ///<remarks>This random variable exposes the underlying
+        ///Mersenne-Twister random number generator.
+        ///</remarks>
         val StdUniform : RVar<int>
 
-        ///Run a random variable using a given seed
+        ///<summary>
+        ///Run a random variable using a given seed.
+        ///</summary>
+        ///<param name="seed">A 32-bit integer used to seed the random number
+        ///generator.</param>
+        ///<param name="rvar">The random variable to be sampled with using the 
+        ///given seed</param>
+        ///<returns>A sample taken from the random variable, which should 
+        ///correspond to the provided seed</returns>
+        ///<remarks>This should be a pure function and it may be treated as one.
+        ///If runrvar is not a pure function, it is a bug in the given
+        ///random variable parameter <c>rvar</c>. If this random variable
+        ///was built only using the given combinators and pure functions, 
+        ///this is also a bug in fsrandomflow itself.</remarks>
         val runrvar : int -> RVar<'T> -> 'T
 
-        ///Run a random variable using the current time from IO
+        ///<summary>Run a random variable using some random seed chosen
+        ///non-deterministically.</summary>
+        ///<param name="rvar">The random variable to be sampled using some 
+        ///seed chosen by the system.</param>
+        ///<returns>A sample taken from the random variable.</return>
         val runrvarIO : RVar<'T> -> 'T
 
-        ///Map a function over a random variable, yielding a new random variable
+        ///<summary>Builds a new random variable of type <c>RVar&lt;'U&gt;</c> by
+        ///mapping a given function <c>'T -> 'U</c> over a random variable
+        ///of type <c>RVar&lt;'T&gt;</c></summary>
+        ///<param name="f">The function to be used to transform random samples 
+        ///from the given <c>RVar&lt;'T&gt;</c> into random samples from the output
+        ///<c>RVar&lt;'U&gt;</c>. If you care about determinism, this should be a 
+        ///pure function.</param>
+        ///<param name="v">A random variable that is to be sampled to produce samples
+        ///using the transform.</param>
+        ///<returns>A random variable that samples the image of <c>f</c> over the
+        ///set of samples that can be produced by <c>v</c></returns>
         val map : ('T -> 'U) -> RVar<'T> -> RVar<'U>
 
-        ///Apply a random argument to a random function (applicative interface).
+        ///<summary>Builds a new random variable that applies results sampled from an 
+        ///<c>RVar&lt;'T&gt;</c> to functions sampled from an <c>RVar&lt;'T -> 'U&gt;</c>.
+        ///</summary>
+        ///<param name="fv">The random variable that will by sampled from to get 
+        ///some transform of the set of values that can be sampled from <c>vv</c>.
+        ///If you care about determinism, these sampled functions should be pure.
+        ///</param>
+        ///<param name="vv">A random variable that is to be sampled to produce samples
+        ///using some transform sampled from <c>vf</c></param>
         val apply : RVar<'T> -> RVar<'T -> 'U> -> RVar<'U>
 
-        ///Pipe random inputs into a function producing random outputs (monadic interface).
+        ///<summary>Builds a new random variable that uses random results sampled from
+        ///an <c>RVar&lt;'T&gt;</c> to produce random variables of type 
+        ///<c>RVar&lt;'U&gt;</c> using the provided function. Those random variables
+        ///are then sampled by the same random generator.</summary>
+        ///<param name="f">Given a sample of <c>'T</c>, this function should fetch 
+        ///a random variable of type <c>'U</c> to be sampled from. If you care about
+        ///determinism, this function should be pure.
+        ///</param>
+        ///<param name="v">A random variable that will be sampled for an input to
+        ///the given function <c>f</c></param>
+        ///<returns>A random variable which samples the results of <c>f</c> when given
+        ///samples of <c>v</v>
         val concatMap : ('T -> RVar<'U>) -> RVar<'T> -> RVar<'U>
 
-        ///Sample another random variable a given number of times, rather than just once
+        ///<summary>Creates a random variable that, when sampled, samples
+        ///another random variable a given number of times, and returns
+        ///an array of the samples</summary>
+        ///<param name="count">The number of times <c>v</c> will be sampled
+        ///upon sampling the resulting random variable.</param>
+        ///<param name="v">The random variable to sample from when building
+        ///the result array</param>
+        ///<returns>A random variable, that when sampled, gives a <c>count</c>
+        ///length array of samples of <c>v</c></returns>
         val take : int -> RVar<'T> -> RVar<'T []>
-
-        ///Sample a random variable a given number of times in parallel
+        
+        ///<summary>Creates a random variable that, when sampled, samples
+        ///another random variable a given number of times in parallel,
+        ///and returns an array of the samples.</summary>
+        ///<param name="count">The number of times <c>v</c> will be sampled
+        ///upon sampling the resulting random variable.</param>
+        ///<param name="v">The random variable to sample from when building
+        ///the result array.</param>
+        ///<returns>A random variable, that when sampled, gives a <c>count</c>
+        ///length array of samples of <c>v</c></returns>
+        ///<remarks>This is ideal if <c>count</c> is 
+        ///quite small but sampling <c>v</c> is expensive.
+        ///Like any parallel primitive, you should check empirically
+        ///that your use of it improves real time performance; it may
+        ///make it worse rather than better. To preserve determinism,
+        ///no attempt is made to help you with chunking.</remarks>
         val takeParallel : int -> RVar<'T> -> RVar<'T []>
 
-        ///Create a random variable that samples another random variables infinite times
+        ///<summary>Creates a random variable that streams the output
+        ///of another random variable with a branched random generator.
+        ///Polling the enumerator samples from it with the branched
+        ///generator.</summary>
+        ///<param name="v">A random variable to sample from infinitely</param>
+        ///<returns>An infinite stream of <c>v</c> samples.</returns>
         val repeat : RVar<'T> -> RVar<'T seq>
 
-        ///Create a random variable that samples two random variables, one after the other
+        ///<summary>Creates a random variable out of two random variables,
+        ///which, when sampled, returns samples from both variables in a pair.
+        ///</summary>
+        ///<param name="v1">A random variable to sample for the first value
+        ///of the pair</param>
+        ///<param name="v2">A random variable to sample for the second value
+        ///of the pair</param>
+        ///<returns>A random variable that, when sampled, returns a pair
+        ///of values, sampling from the given <c>v</c>'s</returns>
         val zip : RVar<'T> -> RVar<'U> -> RVar<'T * 'U>
-
-        ///Create a random variable that samples three random variables, one after the other
+        
+        ///<summary>Creates a random variable out of three random variables,
+        ///which, when sampled, returns samples from all three
+        ///variables in a triple.
+        ///</summary>
+        ///<param name="v1">A random variable to sample for the first value
+        ///of the pair</param>
+        ///<param name="v2">A random variable to sample for the middle value
+        ///of the pair</param>
+        ///<param name="v3">A random variable to sample for the last value
+        ///of the pair</param>
+        ///<returns>A random variable that, when sampled, returns a triple
+        ///of values, sampling from the given <c>v</c>'s</returns>
         val zip3 : RVar<'T> -> RVar<'U> -> RVar<'V> -> RVar<'T * 'U * 'V>
 
-        ///Create a random variable that ignores the underlying stream and simply returns a constant (unit function).
+        ///<summary>Creates a random variable that, when sampled, returns
+        ///one and only one value, not polling the underlying random 
+        ///generator.</summary>
+        ///<param name="v">The value that this random variable will return
+        ///</param>
+        ///<returns>A random variable that returns the same value
+        ///every time that it is sampled</returns>
         val constant : 'T -> RVar<'T>
 
-        ///For some sequence of random computations, make a random computation that runs the sequence in order
-        val sequence : RVar<'T> seq -> RVar<'T seq>
+        ///<summary>Creates a random variable from a sequence of random
+        ///variables, that, when sampled, samples each random variable
+        ///given in order and samples from it.
+        ///</summary>
+        ///<param name="xs">A sequence of random variables to sample in order.
+        ///The given sequence has to be finite.</param>
+        ///<returns>A random variable, that, when sampled, samples a sequence
+        ///of provided random variables in order, returning a new sequence.
+        ///</returns>
+        val sequence : RVar<'T> seq -> RVar<'T []>
 
-        ///For a finite input of random variables, sample them all in parallel and return the results in an array
+        ///<summary>Creates a random variable that, when sampled, 
+        ///produces an enumerator that samples each provided random
+        ///variable in order using a branched random generator.
+        ///</summary>
+        ///<param name="xs>A sequence of random variables that will be sampled
+        ///from in order using a branch of the random number generator.
+        ///This sequence is allowed to be infinite.
+        ///</param>
+        ///<returns>A random variable that, when sampled, produces a sequence
+        ///that, when polled, samples the next random value in a stream
+        ///of random variables.
+        ///</returns>
+        val sequenceStreaming : RVar<'T> seq -> RVar<'T seq>
+
+        ///<summary>Creates a random variable that, when sampled, 
+        ///samples each of the provided random variables in parallel.
+        ///</summary>
+        ///<param name="xs">A collection of random variables to sample from
+        ///in parallel. It must be finite.</param>
+        ///<returns>A random variable that, when samples, samples many
+        ///other random variables in parallel and returns the results in
+        ///a new array.</returns>
         val sequenceParallel : RVar<'T> seq -> RVar<'T []>
 
-        ///Removes values that fail the given test from the random variable. If you remove all values, you will loop infinitely
+        ///<summary>Creates a new random variable that, when sampled, 
+        ///samples another random variable repeatedly until the sampled
+        ///value satisfies a given predicate. If the predicate is not
+        ///satisfiable on the sample space for that variable, this
+        ///will loop forever when sampled.</summary>
+        ///<param name="f">A predicate which any produced sample should
+        ///satisfy</param>
+        ///<param name="v">A random variable that will be sampled to produce
+        ///candidate samples to be tested by the predicate</param>
+        ///<returns>A random variable that, when sampled, samples another 
+        ///random variable until the sample satisfies some predicate.
+        ///</returns>
         val filter : ('T -> bool) -> RVar<'T> -> RVar<'T>
 
-        ///Removes values that fail a test from the random variable. The test is itself allowed to be randomized. If you remove all 
-        /// values, you will loop infinitely.
+        ///<summary>Creates a new random variable that, when sampled, 
+        ///samples another random variable repeatedly until the sampled
+        ///value satisfies a given predicate. The predicate is itself
+        ///allowed to use randomness to determine if the value satisfies
+        ///it or not. If the predicate is not
+        ///satisfiable on the sample space for that variable, this
+        ///will loop forever when sampled.</summary>
+        ///<param name="f">A randomized predicate which any produced
+        ///satisfied successfully</param>
+        ///<param name="v">A random variable that will be sampled to produce
+        ///candidate samples to be tested by the predicate</param>
+        ///<returns>A random variable that, when sampled, samples another 
+        ///random variable until the sample satisfies some randomized
+        ///predicate.
+        ///</returns>
         val filterRandomly : ('T -> RVar<bool>) -> RVar<'T> -> RVar<'T>
 
         ///Perform a single coin flip (a "Bernoulli trial": this is the Bernoulli distribution)

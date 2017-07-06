@@ -55,7 +55,7 @@ let getStars n = randomly {
 
 [<EntryPoint>]
 let main argv = 
-    let seed = if argv.Length < 1 then let x = System.DateTime.Now in x.Millisecond else int(argv.[0])
+    let seed = if argv.Length < 1 then let x = System.DateTime.Now in (int)x.Ticks else int(argv.[0])
     let stars = RVar.runrvar seed (getStars 1000)
     let platform = new NGraphics.SystemDrawingPlatform()
     let canvas = platform.CreateImageCanvas(new NGraphics.Size(1.0,1.0), scale=1000.0)
