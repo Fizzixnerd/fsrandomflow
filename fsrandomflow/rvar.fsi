@@ -218,16 +218,32 @@ namespace fsrandomflow
         ///</returns>
         val filterRandomly : ('T -> RVar<bool>) -> RVar<'T> -> RVar<'T>
 
-        ///Perform a single coin flip (a "Bernoulli trial": this is the Bernoulli distribution)
+        ///<summary>Perform a single coin flip.</summary>
+        ///<remarks>This is the Bernoulli distribution.</remarks>
         val CoinFlip : RVar<bool>
 
-        ///Randomly flip the sign of an integer
+        ///<summary>A random variable that, when sampled, randomly flips
+        ///the sign of an integer and returns the result. The chance
+        ///of either result is equal.</summary>
+        ///<param name="v">An integer.</param>
+        ///<returns>A random variable which returns a constant
+        ///int with a random sign when sampled.</returns>
         val RandomlySignedInt : int -> RVar<int>
-
-        ///Randomly flip the sign of a double
+        
+        ///<summary>A random variable that, when sampled, randomly flips
+        ///the sign of a double and returns the result. The chance
+        ///of either result is equal.</summary>
+        ///<param name="v">A double.</param>
+        ///<returns>A random variable which returns a constant
+        ///double with a random sign when sampled.</returns>
         val RandomlySignedDouble : float -> RVar<float>
 
-        ///Randomly flip the sign of a float
+        ///<summary>A random variable that, when sampled, randomly flips
+        ///the sign of a double and returns the result. The chance
+        ///of either result is equal.</summary>
+        ///<param name="v">A double.</param>
+        ///<returns>A random variable which returns a constant
+        ///double with a random sign when sampled.</returns>
         val RandomlySignedFloat : float32 -> RVar<float32>
 
         ///A non-negative integer less than n

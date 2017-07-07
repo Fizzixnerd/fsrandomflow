@@ -35,6 +35,8 @@ module RVar =
 
     let take count v = TakeVar(v,count) :> RVar<'T array>
     
+    //2 divides evenly into a 32 bit integer, so no correction
+    //is needed here.
     let CoinFlip = map (fun n -> n%2 = 0) StdUniform
 
     let RandomlySignedInt v = randomly {
