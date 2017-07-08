@@ -224,3 +224,9 @@ module RVar =
     let Normal(mean,stdev) = map (fun outcome -> mean + stdev * outcome) StandardNormal
 
     let Exponential(inverseScale) = map (fun x -> (-Math.Log(x))/inverseScale) UniformAboveZeroBelowOne
+
+    let union v1 v2 = randomly {
+            let! v1' = v1
+            let! v2' = v2
+            return! oneOf([|v1'; v2'|])
+        }

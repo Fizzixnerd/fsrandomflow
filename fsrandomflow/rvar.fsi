@@ -246,16 +246,38 @@ namespace fsrandomflow
         ///double with a random sign when sampled.</returns>
         val RandomlySignedFloat : float32 -> RVar<float32>
 
-        ///A non-negative integer less than n
+        ///<summary>A random variable that, when sampled, yields a
+        ///non-negative integer less than <c>n</c>.</summary>
+        ///<param name="v">An integer exclusive upper bound</param>
+        ///<returns>A random variable that returns an integer from
+        ///0 to some number.</returns>
+        ///<remarks>The underlying generator does some minor extra work
+        ///to ensure that you are actually sampling from a uniform
+        ///distribution, which the remainder function doesn't 
+        ///achieve alone if the upper bound is not a power of two.
+        ///The potential deviation from a uniform distribution
+        ///increases with the bound in an inverse hyperbolic fashion;
+        ///for small bounds or powers of two you might prefer to just use
+        ///<c>StdUniform</c> and use the remainder function
+        ///to put it into the desired range.</remarks>
         val UniformZeroAndUpBelow : int -> RVar<int>
 
-        ///An integer inbetween the two given bounds, inclusive
+        ///<summary>A random variable that, when sampled, yields an
+        ///integer in between the two given bounds, inclusive. All integers
+        ///within these bounds have an equal chance of being selected.
+        ///The bounds can be given in any order.
+        ///</summary>
+        ///<param name=n1>A boundary for a closed interval</param>
+        ///<param name=n2>A boundary for a closed interval</param>
+        ///<returns>A random variable that, when sampled, returns an integer
+        ///bounded in a certain range</returns>
         val UniformInt : int * int -> RVar<int>
 
-        ///Randomly gets a double between 0 and 1, inclusive
+        ///A random variable that, when sampled, yields a double between 0 and 1,
+        ///inclusive
         val UniformZeroToOne : RVar<float>
 
-        ///Randomly gets a double within an interval, allowing for either bound to be open or closed
+        ///A random variable that, when sampled, yields a double  0 and 1,
         val UniformInterval : float * float * bool * bool -> RVar<float>
 
         ///Gets a Double bound inside a given closed interval
@@ -281,3 +303,9 @@ namespace fsrandomflow
 
         ///Randomly gets a double from a normal distribution with the given mean and standard deviation
         val Normal : (float * float) -> RVar<float>
+
+        ///<summary>Create a random variable that samples from two other random variables with equal chance</summary>
+        ///<param name="v1">A random variable to potentially sample from</param>
+        ///<param name="v2">A random variable to potentially sample from</param>
+        ///<returns>A random variable that, when sampled, samples one of some two random variables with equal chance</returns>
+        val union : RVar<'T> -> RVar<'T> -> RVar<'T>
