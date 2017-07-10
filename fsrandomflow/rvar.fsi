@@ -304,8 +304,7 @@ namespace fsrandomflow
         ///Randomly gets a double from a normal distribution with the given mean and standard deviation
         val Normal : (float * float) -> RVar<float>
 
-        ///<summary>Create a random variable that samples from two other random variables with equal chance</summary>
-        ///<param name="v1">A random variable to potentially sample from</param>
-        ///<param name="v2">A random variable to potentially sample from</param>
-        ///<returns>A random variable that, when sampled, samples one of some two random variables with equal chance</returns>
-        val union : RVar<'T> -> RVar<'T> -> RVar<'T>
+        ///<summary>Create a random variable that samples from some number of other random variables with equal chance</summary>
+        ///<param name="xs">The random variable to potentially sample from</param>
+        ///<returns>A random variable that, when sampled, samples one of a group of random variables with equal chance</returns>
+        val union : RVar<'T> seq -> RVar<'T>
