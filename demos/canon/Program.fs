@@ -48,7 +48,7 @@ let scale =
     let major  = total/2.0
     let hminor = total/4.0
     let ominor = total/(8.0*2.0) //two other minors
-    let mode   = (total-major-hminor-ominor)/5.0 //5 modes
+    let mode   = (total-major-hminor-ominor-ominor)/5.0 //5 modes
     RVar.oneOfWeighted [ (major,ionian)
                        ; (hminor,harmonicMinor)
                        ; (ominor,melodicMinor)
