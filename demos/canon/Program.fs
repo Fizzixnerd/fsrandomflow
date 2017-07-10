@@ -9,34 +9,71 @@ open System.Text
 open fsrandomflow
 open fsrandomflow.RVar
 
+//Unwords function for getting a string out of a sequence of words
+let rec intersperse x xs = 
+    if Seq.isEmpty xs || Seq.isEmpty (Seq.tail xs) then xs 
+    else seq { yield Seq.head xs; yield x; yield! intersperse x (Seq.tail xs) }
+let unwords words = 
+    let sb = System.Text.StringBuilder()
+    intersperse " " words |> Seq.iter (sb.Append >> ignore)
+    sb.ToString()
+
 //Instrument choices for the ensemble
 let voice1 = Midi.Instrument.ChoirAahs
 let voice2 = Midi.Instrument.VoiceOohs
 let voice3 = Midi.Instrument.AcousticGuitarNylon
 let voice4 = Midi.Instrument.Harpsichord
 
+//Major scale
+let ionian = [| "I"; "ii"; "iii"; "IV"; "V"; "vi"; "viio" |]
+//Minor scales
+let harmonicMinor = [| "i"; "iio"; "III+"; "iv"; "V"; "VI"; "nviio" |]
+let melodicMinor  = [| "i"; "ii"; "III+"; "IV"; "V"; "nvio"; "nviio" |]
+let aeolian       = [| "i"; "iio"; "III"; "iv"; "V"; "VI"; "nviio" |]
+//Major modal scales
+let dorian     = [| "i"; "ii"; "III"; "IV"; "v"; "vio"; "VII"|]
+let phyrgian   = [| "i"; "II"; "III"; "iv"; "vo"; "VI"; "vii"|]
+let lydian     = [| "I"; "II"; "iii"; "ivo"; "V"; "vi"; "vii"|]
+let mixolydian = [| "I"; "ii"; "iiio"; "IV"; "v"; "vi"; "VII"|]
+let locrian    = [| "io"; "II"; "iii"; "iv"; "V"; "VI"; "vii"|]
+
+//Pecking order:
+//Major scale half the time
+//Harmonic minor quarter of the time
+//Other minors 1/8th of the time.
+//Modes get equal share for the remainder
+let scale = 
+    let total  = 100.0//%
+    let major  = total/2.0
+    let hminor = total/4.0
+    let ominor = total/(8.0*2.0) //two other minors
+    let mode   = (total-major-hminor-ominor)/5.0 //5 modes
+    RVar.oneOfWeighted [ (major,ionian)
+                       ; (hminor,harmonicMinor)
+                       ; (ominor,melodicMinor)
+                       ; (ominor,aeolian)
+                       ; (mode,dorian)
+                       ; (mode,phyrgian)
+                       ; (mode,lydian)
+                       ; (mode,mixolydian)
+                       ; (mode,locrian) ]
+
 //Get a string of Staccato markup to give to NFugue
 let progression = randomly {
-        //Choose a major scale one half of the time, harmonic minor a quarter of the time, other minors one eight of the time each
-        let! (melodic,harmonic) = 
-            RVar.oneOfWeighted [| (0.5,(true, true)) ; (0.125,(false, false)) ; (0.25,(true, false)) ; (0.125,(false, true)) |]
-        //White space separator
-        let w = RVar.constant " "
-        //Define the chord types
-        let tonic = RVar.constant (if (melodic && harmonic) then "I" else "i")
-        let perfect = RVar.oneOf([| (if melodic then "IV" else "iv") ; (if (melodic || harmonic) then "V" else "v") |])
-        let dissonant = RVar.oneOf([| (if melodic then "ii" else "iio") ; 
-                                      (if (melodic <> harmonic) then "nviio" else if melodic then "viio" else "VII") |])
-        let consonant = RVar.oneOf([| (if (melodic <> harmonic) then "III+" else if melodic then "iii" else "III") ;
-                                      (if not melodic then "VI" else if harmonic then "vi" else "nvio") |])
+        //Get a scale
+        let! chordChoices = scale
+        //Define the chord types with array indexes
+        let tonic = RVar.constant 0
+        let perfect = RVar.oneOf[3;4]
+        let dissonant = RVar.oneOf[1;6]
+        let consonant = RVar.oneOf[2;5]
         let nondissonnant = RVar.union[tonic;perfect;consonant]
         let any = RVar.union[tonic;perfect;consonant;dissonant]
-        //Fold using a string builder and return
-        let appendNote (str : StringBuilder) (next : string) = 
-            str.Append(next)
-        let builder = new StringBuilder()
-        let! results = RVar.sequence [tonic; w; any; w; any; w; perfect; w; any; w; any; w; any; w; perfect]
-        return (Array.fold appendNote builder results).ToString()
+        //Get the eight note chord progression for the canon
+        let! results = RVar.sequence [tonic; any; any; perfect; any; any; any; perfect]
+        return results
+               |> Seq.map(fun i -> chordChoices.[i])
+               |> unwords
     }
 
 //Get a chord progression to use as the foundation for the canon
