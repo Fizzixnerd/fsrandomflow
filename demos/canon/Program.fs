@@ -16,14 +16,19 @@ let voice3 = Midi.Instrument.AcousticGuitarNylon
 let voice4 = Midi.Instrument.Harpsichord
 
 //Get a string of Staccato markup to give to NFugue
-let progression minor = randomly {
+let progression = randomly {
+        //Choose a major scale one half of the time, or one of three minor scales with equal probability
+        let! (melodic,harmonic) = 
+            RVar.oneOfWeighted [| (3.0,(true, false)) ; (1.0,(false, false)) ; (1.0,(true, false)) ; (1.0,(false, true)) |]
         //White space separator
         let w = RVar.constant " "
         //Define the chord types
-        let tonic = RVar.constant (if minor then "i" else "I")
-        let perfect = RVar.oneOf([| (if minor then "iv" else "IV") ; (if minor then "V" else "V") |])
-        let dissonant = RVar.oneOf([| (if minor then "iio" else "ii") ; (if minor then "nviio" else "viio") |])
-        let consonant = RVar.oneOf([| (if minor then "III+" else "iii") ; (if minor then "vi" else "VI") |])
+        let tonic = RVar.constant (if (melodic && harmonic) then "I" else "i")
+        let perfect = RVar.oneOf([| (if melodic then "IV" else "iv") ; (if (melodic || harmonic) then "V" else "v") |])
+        let dissonant = RVar.oneOf([| (if melodic then "ii" else "iio") ; 
+                                      (if (melodic <> harmonic) then "nviio" else if melodic then "viio" else "VII") |])
+        let consonant = RVar.oneOf([| (if (melodic <> harmonic) then "III+" else if melodic then "iii" else "III") ;
+                                      (if not melodic then "VI" else if harmonic then "vi" else "nvio") |])
         let nondissonnant = RVar.union[tonic;perfect;consonant]
         let any = RVar.union[tonic;perfect;consonant;dissonant]
         //Fold using a string builder and return
@@ -40,7 +45,7 @@ let canonBase = randomly {
         let! root = RVar.oneOf([|"A"; "B"; "C"; "D"; "E"; "F"; "G"|])
         let! minor = RVar.CoinFlip
         //Get a chord progression
-        let! chords = progression minor
+        let! chords = progression
         //Transpose the progression to the chosen key and return it
         return NFugue.Theory.ChordProgression(chords).SetKey(root)
     }
