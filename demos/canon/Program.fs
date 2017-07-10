@@ -17,9 +17,9 @@ let voice4 = Midi.Instrument.Harpsichord
 
 //Get a string of Staccato markup to give to NFugue
 let progression = randomly {
-        //Choose a major scale one half of the time, or one of three minor scales with equal probability
+        //Choose a major scale one half of the time, harmonic minor a quarter of the time, other minors one eight of the time each
         let! (melodic,harmonic) = 
-            RVar.oneOfWeighted [| (3.0,(true, false)) ; (1.0,(false, false)) ; (1.0,(true, false)) ; (1.0,(false, true)) |]
+            RVar.oneOfWeighted [| (0.5,(true, true)) ; (0.125,(false, false)) ; (0.25,(true, false)) ; (0.125,(false, true)) |]
         //White space separator
         let w = RVar.constant " "
         //Define the chord types
