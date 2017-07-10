@@ -9,62 +9,76 @@ open System.Text
 open fsrandomflow
 open fsrandomflow.RVar
 
-let union v1 v2 = randomly {
-        let! v1' = v1
-        let! v2' = v2
-        return! oneOf([|v1'; v2'|])
-    }
+//Instrument choices for the ensemble
+let voice1 = Midi.Instrument.ChoirAahs
+let voice2 = Midi.Instrument.VoiceOohs
+let voice3 = Midi.Instrument.AcousticGuitarNylon
+let voice4 = Midi.Instrument.Harpsichord
 
-let progression major = randomly {
-        let tonic = RVar.constant (if major then "I" else "i")
+//Get a string of Staccato markup to give to NFugue
+let progression minor = randomly {
+        //White space separator
         let w = RVar.constant " "
-        let perfect = RVar.oneOf([| (if major then "iv" else "IV") ; (if major then "v" else "V") |])
-        let dissonant = RVar.oneOf([| (if major then "ii" else "II") ; (if major then "vii" else "VII") |])
-        let consonant = RVar.oneOf([| (if major then "iii" else "III") ; (if major then "vi" else "VI") |])
-        let nondissonnant = union perfect consonant
-        let any = union dissonant nondissonnant
+        //Define the chord types
+        let tonic = RVar.constant (if minor then "i" else "I")
+        let perfect = RVar.oneOf([| (if minor then "iv" else "IV") ; (if minor then "V" else "V") |])
+        let dissonant = RVar.oneOf([| (if minor then "iio" else "ii") ; (if minor then "nviio" else "viio") |])
+        let consonant = RVar.oneOf([| (if minor then "III+" else "iii") ; (if minor then "vi" else "VI") |])
+        let nondissonnant = RVar.union[tonic;perfect;consonant]
+        let any = RVar.union[tonic;perfect;consonant;dissonant]
+        //Fold using a string builder and return
         let appendNote (str : StringBuilder) (next : string) = 
-            str.Append(" ").Append(next)
+            str.Append(next)
         let builder = new StringBuilder()
-        let! results = RVar.sequence [tonic; w; nondissonnant; w; nondissonnant; w; perfect; w; tonic; w; nondissonnant; w; any; w; tonic]
-        return results
-               |> Array.fold (fun s t -> s+t) ""
+        let! results = RVar.sequence [tonic; w; any; w; any; w; perfect; w; any; w; any; w; any; w; perfect]
+        return (Array.fold appendNote builder results).ToString()
     }
 
+//Get a chord progression to use as the foundation for the canon
 let canonBase = randomly {
+        //Choose a key
         let! root = RVar.oneOf([|"A"; "B"; "C"; "D"; "E"; "F"; "G"|])
-        let! major = RVar.CoinFlip 
-        let! chords = progression major
+        let! minor = RVar.CoinFlip
+        //Get a chord progression
+        let! chords = progression minor
+        //Transpose the progression to the chosen key and return it
         return NFugue.Theory.ChordProgression(chords).SetKey(root)
     }
 
+//Get a random canon, ready to be played
 let canon =
+        //Start on the tonic for the first chord
         let getfst = randomly {
                 let! rest = RVar.shuffle[1;2]
                 return Array.ofSeq (seq { yield 0; yield! rest })
             }
+        //End on the fifth for the last chord
         let getlst = randomly {
                 let! rest = RVar.shuffle[1;2]
                 return Array.ofSeq (seq {yield! rest; yield 0})
             }
         randomly {
-            let! prog = canonBase 
+            //Get a chord progression
+            let! prog = canonBase
             let notes = prog.GetChords() |> Array.map(fun x -> x.GetNotes())
+            //Choose the notes in the chords to be played
             let! start = getfst
             let! ending = getlst
             let! mids = RVar.take 6 (RVar.shuffle[0;1;2])
             let result = seq { yield start; yield! mids; yield ending }
+            //Extract the chosen notes out of the chords
             let getLine n = result |> Seq.map(fun x -> x.[n]) 
-            let melody ()= 
+            let melody() = 
                 seq {yield! getLine 0; yield! getLine 1; yield! getLine 2}
                 |> Seq.mapi(fun i j -> notes.[i % 8].[j].GetPattern() :> NFugue.Patterns.IPatternProducer)
                 |> Array.ofSeq
                 |> (fun x -> NFugue.Patterns.Pattern(x))
+            //Set up and return a track table after writing the canon into it
             let tracks = Patterns.TrackTable(13,0.5)
-            let (m1,m2,m3,m4) = ((melody()).SetInstrument(Midi.Instrument.ChoirAahs).SetVoice(1).AddToEachNoteToken("4"),
-                                 (melody()).SetInstrument(Midi.Instrument.VoiceOohs).SetVoice(2).AddToEachNoteToken("3"),
-                                 (melody()).SetInstrument(Midi.Instrument.AcousticGuitarNylon).SetVoice(3).AddToEachNoteToken("2"),
-                                 (melody()).SetInstrument(Midi.Instrument.Harpsichord).SetVoice(4).AddToEachNoteToken("1"))
+            let (m1,m2,m3,m4) = ((melody()).SetInstrument(voice1).SetVoice(1).AddToEachNoteToken("4"),
+                                 (melody()).SetInstrument(voice2).SetVoice(2).AddToEachNoteToken("3"),
+                                 (melody()).SetInstrument(voice3).SetVoice(3).AddToEachNoteToken("2"),
+                                 (melody()).SetInstrument(voice4).SetVoice(4).AddToEachNoteToken("1"))
             return tracks.Add(1,0,m1).Add(2,4,m2).Add(3,8,m3).Add(4,12,m4)
         }
      
