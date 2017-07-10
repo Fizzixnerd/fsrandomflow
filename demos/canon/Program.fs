@@ -80,7 +80,6 @@ let progression = randomly {
 let canonBase = randomly {
         //Choose a key
         let! root = RVar.oneOf([|"A"; "B"; "C"; "D"; "E"; "F"; "G"|])
-        let! minor = RVar.CoinFlip
         //Get a chord progression
         let! chords = progression
         //Transpose the progression to the chosen key and return it
