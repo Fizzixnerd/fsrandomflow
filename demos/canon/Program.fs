@@ -6,6 +6,7 @@
 
 open NFugue
 open System.Text
+open System.IO
 open fsrandomflow
 open fsrandomflow.RVar
 
@@ -114,7 +115,7 @@ let canon =
                 |> Seq.mapi(fun i j -> notes.[i % 8].[j].GetPattern() :> NFugue.Patterns.IPatternProducer)
                 |> Array.ofSeq
                 |> (fun x -> NFugue.Patterns.Pattern(x))
-            //Set up and return a track table after writing the canon into it
+            //Set up and return a track table after writing the canon into itue
             let tracks = Patterns.TrackTable(13,0.5)
             let (m1,m2,m3,m4) = ((melody()).SetInstrument(voice1).SetVoice(1).AddToEachNoteToken("4"),
                                  (melody()).SetInstrument(voice2).SetVoice(2).AddToEachNoteToken("3"),
@@ -122,11 +123,46 @@ let canon =
                                  (melody()).SetInstrument(voice4).SetVoice(4).AddToEachNoteToken("1"))
             return tracks.Add(1,0,m1).Add(2,4,m2).Add(3,8,m3).Add(4,12,m4)
         }
-     
+
+let printUsage () = 
+    System.Console.WriteLine("usage: canon [ -o ] [ name ]")
+
+let getSeed str = 
+    let nseed = ref 0
+    if System.Int32.TryParse(str,nseed) then nseed.Value
+    else str.GetHashCode()
+
+let writeCanon path seed = 
+    let music = RVar.runrvar seed canon
+    NFugue.Midi.Conversion.MidiFileConverter.SavePatternToMidi(music, path)
+
+// In the future, cross platform support could be done via portmidi or managed-midi
+//let playMidiFromFile path =
+//    ()
+
+let playCanon name seed = 
+        if System.Environment.OSVersion.Platform = System.PlatformID.Win32NT
+        then 
+            let music = RVar.runrvar seed canon
+            System.Console.WriteLine("Playing canon {0} (integer seed: {1})", name, seed)
+            use player = new NFugue.Playing.Player()
+            player.Play(music)
+        else
+            System.Console.WriteLine("This platform is not supported for playback. Use -o to dump a midi file")
+// In the future, cross platform support could be done via portmidi or managed-midi
+//            let midi = Path.GetTempFileName()
+//            writeCanon midi seed
+//            playMidiFromFile midi
+//            System.IO.File.Delete(midi)
+
+//Append a file extension to the output if the user didn't give one
+let appendMid (str : string) = if not (str.EndsWith(".mid")) then str+".mid" else str
+
 [<EntryPoint>]
 let main argv = 
-    use player = new NFugue.Playing.Player()
-    let seed = if argv.Length = 0 then let x = System.DateTime.Now.Ticks in (int)x else (int)argv.[0]
-    System.Console.WriteLine("Playing canon {0}", seed)
-    player.Play(RVar.runrvar seed canon)
+    let nargs = argv.Length
+    if nargs = 2 && argv.[0] = "-o" then writeCanon (appendMid argv.[1]) (getSeed argv.[1])
+    else if nargs = 1 then playCanon (argv.[0]) (getSeed argv.[0])
+    else if nargs = 0 then let seed = (int)System.DateTime.Now.Ticks in playCanon (seed.ToString()) seed
+    else printUsage()
     0 // return an integer exit code
