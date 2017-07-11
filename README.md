@@ -41,7 +41,7 @@ let dnd5eAttrRollHouseRules = randomly {
     }
 ```
 
-#PSU Summer FOSS Project Week 3 Report
+# PSU Summer FOSS Project Week 3 Report
 
 While much of the functionality is implemented (with the expression builder basically finished) 
 and with the "canon" project providing a good demonstration of the library in about 150 lines, 
