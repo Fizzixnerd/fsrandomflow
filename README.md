@@ -12,7 +12,7 @@ A workflow builder is provided to give lightweight syntax for these combinations
 
 ## Using with MonoDevelop
 
-To use this with MonoDevelopm, you will need to explicitly reference the FSharp.Core package on nuget in this project.
+To use this with MonoDevelop, you will need to explicitly add a package reference the FSharp.Core package on nuget in the main project.
 
 ## Example
 
@@ -78,7 +78,7 @@ record of breaking the seed so far, major versions should be rare.
 Several common statistical distributions are still missing. These should ideally be added before 
 a version 0 release.
 
-The ziggarut algorithm is implemented, but there is no way to discover an actual ziggarut to user
+The ziggarut algorithm is implemented, but there is no way to discover an actual ziggarut to use
 with it for some PDF, and it is not exposed to users anyway. If exposed, especially with a way 
 to randomly build the ziggarut using an evolutionary algorithm like harmony search, users could
 add specific ditributions, such as a stellar mass distribution, to the library. It could also 
