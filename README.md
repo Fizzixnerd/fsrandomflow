@@ -57,7 +57,7 @@ of testing should be a big priority going forward.
 
 Some specific tests should be added after the version 0 release to test that specific constructed
 values remain the same as the library continues to change and evolve. These could then serve as
-canaries if seeds get broken by a chance, or if a new major version is needed.
+canaries if seeds get broken by a change, or if a new major version is needed.
 
 ## .NET Target
 
