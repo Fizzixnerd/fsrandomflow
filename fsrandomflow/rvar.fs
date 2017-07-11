@@ -226,6 +226,11 @@ module RVar =
     let Exponential(inverseScale) = map (fun x -> (-Math.Log(x))/inverseScale) UniformAboveZeroBelowOne
 
     let union xs = randomly {
-            let! xs' = sequence xs
-            return! oneOf(xs')
+            let! (x : RVar<'T>) = oneOf xs
+            return! x
+        }
+
+    let unionWeighted xs = randomly {
+            let! (x : RVar<'T>) = oneOfWeighted xs
+            return! x
         }

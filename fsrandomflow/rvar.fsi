@@ -308,3 +308,5 @@ namespace fsrandomflow
         ///<param name="xs">The random variable to potentially sample from</param>
         ///<returns>A random variable that, when sampled, samples one of a group of random variables with equal chance</returns>
         val union : RVar<'T> seq -> RVar<'T>
+
+        val unionWeighted : (float * RVar<'T>) seq -> RVar<'T>
