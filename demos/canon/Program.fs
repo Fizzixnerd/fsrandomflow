@@ -164,6 +164,9 @@ let writeCanon path seed =
 let playCanon name seed = 
     let music = RVar.runrvar seed canon
     System.Console.WriteLine("Playing canon {0} (integer seed: {1})", name, seed)
+    System.Console.WriteLine("You can use \"{0} -o {1}\" to save this to a file",
+                                System.Environment.GetCommandLineArgs().[0],
+                                name)
     use player = new NFugue.Playing.Player()
     player.Play(music)
 
