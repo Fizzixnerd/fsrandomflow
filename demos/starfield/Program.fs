@@ -2,8 +2,8 @@
 // This code is liscensed under the MIT liscense, see LISCENSE
 // You will need praeclarum's NGraphics library to run this demo, get it via NuGet
 
-open fsrandomflow
-open fsrandomflow.RVar
+open FsRandomFlow
+open FsRandomFlow.RVar
 open NGraphics
 
 //A galactic belt, a set of offsets
@@ -20,6 +20,7 @@ let getGeneralStar = randomly {
     }
 
 let getGalaxyLine = randomly {
+        let! boo = RVar.Normal(0.0,1.0)
         let! bendPoint = RVar.Normal(0.0,0.5)
         let! bendAmt = RVar.Normal(0.0,0.3)
         let! rot = RVar.UniformInterval(0.0,2.0*System.Math.PI,false,true)

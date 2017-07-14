@@ -1,7 +1,7 @@
 ﻿//Copyright 2017 Barend Venter
 //This code is licensed under the MIT license, see LICENSE
 
-namespace fsrandomflow
+namespace FsRandomFlow
     open System.Collections.Generic
 
 //    /// A random variable of a particular type. Don't implement this interface, use the RVar combinators instead.
@@ -176,7 +176,7 @@ namespace fsrandomflow
         ///of random variables.
         ///</returns>
         val sequenceStreaming : RVar<'T> seq -> RVar<'T seq>
-
+        
         ///<summary>Creates a random variable that, when sampled, 
         ///samples each of the provided random variables in parallel.
         ///</summary>
@@ -186,6 +186,32 @@ namespace fsrandomflow
         ///other random variables in parallel and returns the results in
         ///a new array.</returns>
         val sequenceParallel : RVar<'T> seq -> RVar<'T []>
+        
+        ///<summary>Creates a random variable that, when sampled, returns one of the given values, each with the same probabilty.
+        ///</summary>
+        ///<param name="xs">A list of values, one of which will be returned at random.</param>
+        ///<example><code>
+        val oneOf : seq<'T> -> RVar<'T>
+        
+        ///<summary>Creates a random variable, that, when sampled, returns one possibility out of many, 
+        ///with given weights. Weights will be ignored if they are not greater than 0, and do not 
+        ///need to be given normalized.</summary>
+        val oneOfWeighted : seq<float * 'T> -> RVar<'T>
+
+        ///<summary>Create a random variable that samples from some number of other random variables with equal chance.</summary>
+        ///<param name="xs">The random variables to potentially sample from.</param>
+        ///<returns>A random variable that, when sampled, samples one of a group of random variables with equal chance.</returns>
+        val union : RVar<'T> seq -> RVar<'T>
+        
+        ///<summary>Create a random variable that samples from some number of other random variables with given chances.</summary>
+        ///<param name="xs">An association list of weights and random variables to potentially sample from. Weights less than
+        ///zero are ignored.</param>
+        ///<returns>A random variable that, when sampled, samples one of a group of random variables.</returns>
+        val unionWeighted : (float * RVar<'T>) seq -> RVar<'T>
+        
+
+        ///Shuffles a finite input. A new array is allocated to hold the output.
+        val shuffle : seq<'T> -> RVar<'T []>
 
         ///<summary>Creates a new random variable that, when sampled, 
         ///samples another random variable repeatedly until the sampled
@@ -216,7 +242,36 @@ namespace fsrandomflow
         ///random variable until the sample satisfies some randomized
         ///predicate.
         ///</returns>
+        ///<example><code>filterRandomly probability UniformZeroToOne</code>
+        ///will return a number between 0 and 1, tending toward high numbers,
+        ///and always rejecting zero.</example>
         val filterRandomly : ('T -> RVar<bool>) -> RVar<'T> -> RVar<'T>
+
+        ///<summary>Creates a new random variable that, when sampled, 
+        ///retrieves a random row from a given 2D array.</summary>
+        ///<param name="arr">A 2D array for which to retrieve random rows</param>
+        ///<returns>A random variable, that, when sampled, retrieves a random row
+        ///from some 2D array</returns>
+        ///<example><code>tableRow (array2D [['1';'2';'3'];['4';'5';'6'];['7';'8';'9'];['*';'0';'#']])</code>
+        ///can be sampled for any of the three element rows <code>['1';'2';'3']</code>, <code>['4';'5';'6']</code>,
+        ///<code>['7';'8';'9']</code>, or <code>['*';'0';'#']</code></example>
+        val tableRow : 'T [,] -> RVar<'T seq>
+        
+        ///<summary>Creates a new random variable that, when sampled, 
+        ///retrieves a random column from a given 2D array.</summary>
+        ///<param name="arr">A 2D array for which to retrieve random column</param>
+        ///<returns>A random variable, that, when sampled, retrieves a random column
+        ///from some 2D array</returns>
+        ///<example><code>tableColumn (array2D [['1';'2';'3'];['4';'5';'6'];['7';'8';'9'];['*';'0';'#']])</code>
+        ///can be sampled for any of the four element columns <code>['1';'4';'7';'*']</code>, <code>['4';'5';'6']</code>,
+        ///<code>['7';'8';'9']</code>, or <code>['*';'0';'#']</code></example>
+        val tableColumn : 'T [,] -> RVar<'T seq>
+        
+        ///Get one element from each column in a 2D array
+        val tableRowWise : 'T [,] -> RVar<'T seq>
+
+        ///Get one element from each row in a 2D array
+        val tableColumnWise : 'T [,] -> RVar<'T seq>
 
         ///<summary>Perform a single coin flip.</summary>
         ///<remarks>This is the Bernoulli distribution.</remarks>
@@ -289,24 +344,14 @@ namespace fsrandomflow
         ///A boolean, the chance of it being true is the given probability
         val probability : float -> RVar<bool>
 
-        ///Randomly picks one possibility out many
-        val oneOf : seq<'T> -> RVar<'T>
-        
-        ///Randomly picks one possibility out of many, with given probabilities (normalized to 1)
-        val oneOfWeighted : seq<float * 'T> -> RVar<'T>
-
-        ///Shuffles a finite input. A new array is allocated to hold the output.
-        val shuffle : seq<'T> -> RVar<'T []>
 
         ///Randomly gets a double from the standard normal distribution
         val StandardNormal : RVar<float>
 
-        ///Randomly gets a double from a normal distribution with the given mean and standard deviation
+        ///<summary>A random variable that, when sampled gets a double from a normal
+        /// distribution with the given mean and standard deviation</summary>
+        ///<param name="mean">A mean that will center the standard 
+        ///distribution</param>
+        ///<param name="stdDev">A standard deviation that will widen
+        ///the bell curve</param>
         val Normal : (float * float) -> RVar<float>
-
-        ///<summary>Create a random variable that samples from some number of other random variables with equal chance</summary>
-        ///<param name="xs">The random variable to potentially sample from</param>
-        ///<returns>A random variable that, when sampled, samples one of a group of random variables with equal chance</returns>
-        val union : RVar<'T> seq -> RVar<'T>
-
-        val unionWeighted : (float * RVar<'T>) seq -> RVar<'T>

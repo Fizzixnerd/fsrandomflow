@@ -1,4 +1,11 @@
-﻿namespace fsrandomflow
+﻿namespace FsRandomFlow
+//This is how trees describing random calculations are built
+
+//Extra types of random variables could always be added to help with
+//optimization.
+
+//Also, a more clever implementation of the syntax builder might include
+//optimizations for cases like mapping over a constant.
 
 ///The underlying RVar abstract syntax tree
 module RVarAST =
@@ -8,63 +15,83 @@ module RVarAST =
     ///This random variable exposes the underlying uniformly-distributed values produced by the random source.
     type StdUniformClass() =
         interface RVar<int> with
-            override this.sample(rsource : IEnumerator<int>) = 
+            override this.Sample(rsource : IEnumerator<int>) = 
                 let res = rsource.Current
                 rsource.MoveNext() |> ignore
                 res
 
-    type MappedVar<'T,'U>(BaseVar : RVar<'T>, MapFn : 'T -> 'U) = 
+    type MappedVar<'T,'U>(v : RVar<'T>, f : 'T -> 'U) = 
         interface RVar<'U> with
-            override this.sample rsource = MapFn(BaseVar.sample(rsource))
+            override this.Sample rsource = f(v.Sample(rsource))
 
-    type ApplyVar<'T,'U>(BaseVar : RVar<'T -> 'U>, ArgVar : RVar<'T>) =
+    type ApplyVar<'T,'U>(v : RVar<'T -> 'U>, w : RVar<'T>) =
         interface RVar<'U> with
-            override this.sample rsource = 
-                let f = BaseVar.sample(rsource)
-                let v = ArgVar.sample(rsource)
-                f v
+            override this.Sample rsource = 
+                let f = v.Sample(rsource)
+                let v' = w.Sample(rsource)
+                f v'
 
-    type BindVar<'T,'U>(BaseVar : RVar<'T>, Kleisli : 'T -> RVar<'U>) = 
+    type BindVar<'T,'U>(v : RVar<'T>, kleisli : 'T -> RVar<'U>) = 
         interface RVar<'U> with
-            override this.sample rsource =
-                let v = BaseVar.sample(rsource)
-                (Kleisli v).sample(rsource)
+            override this.Sample rsource =
+                let v' = v.Sample(rsource)
+                (kleisli v').Sample(rsource)
+
+    type CombineVar<'T,'U>(prev : RVar<unit>, next : RVar<'U>) = 
+        interface RVar<'U> with
+            override this.Sample rsource =
+                prev.Sample(rsource)
+                next.Sample(rsource)
 
     type ConstVar<'T>(v) =
         interface RVar<'T> with
-            override this.sample rsource = v
+            override this.Sample rsource = v
 
     ///This threads a different random generator through some branch, either to run it in parallel 
-    /// or to allow the computation to be safely aborted. It always steps the underlying generator 
-    /// exactly once.
+    ///or to allow the computation to be safely aborted. It always steps the underlying generator 
+    ///exactly once.
     type Spark<'T>(v : RVar<'T>) =
-        static member branch n = twister(n) //TODO: Use dynamic creation, don't just change the seed
+        static member Branch n = twister(n) //TODO: Use dynamic creation, don't just change the seed
         interface RVar<'T> with
-            override this.sample rsource = 
-                let newBranch = Spark<_>.branch rsource.Current
-                ignore(rsource.MoveNext())
-                v.sample(newBranch.GetEnumerator())
+            override this.Sample rsource = 
+                let newBranch = Spark<_>.Branch rsource.Current
+                rsource.MoveNext() |> ignore
+                v.Sample(newBranch.GetEnumerator())
 
     type Streaming<'T>(v : RVar<'T>) = 
         interface RVar<'T seq> with
-            override this.sample rsource = 
-                let newBranch = Spark<_>.branch rsource.Current
-                ignore (rsource.MoveNext())
+            override this.Sample rsource = 
+                let newBranch = Spark<_>.Branch rsource.Current
+                rsource.MoveNext() |> ignore
                 newBranch.GetEnumerator()
-                |> Seq.unfold (fun gen -> Some(v.sample(gen),gen))    
+                |> Seq.unfold (fun gen -> Some(v.Sample(gen),gen))    
 
+    //Note: SequenceVar is head-strict rather than strict by choice.
+    //While this might be a mistake, the reasoning is that user will not
+    //directly create SequenceVar instances, so it is better to leave it flexible
+    //and push the work of assuring determinism on the library.
+    //Either wrap it in spark if you plan to use the head-strict behavior, or 
+    //convert the sequence to a fully strict data type if you do not.
     type SequenceVar<'T>(vs: RVar<'T> seq) =
         interface RVar<'T seq> with
-            override this.sample rsource = 
-                Seq.map(fun (x: RVar<'T>) -> x.sample rsource) vs
+            override this.Sample rsource = 
+                Seq.map(fun (x: RVar<'T>) -> x.Sample rsource) vs
 
-    type TakeVar<'T>(BaseVar : RVar<'T>, count : int) =
+    type StrictSequenceVar<'T>(vs: RVar<'T> seq) =
+        interface RVar<'T seq> with
+            override this.Sample rsource =
+                Seq.fold(fun xs (x: RVar<'T>) -> List.Cons(x.Sample rsource,xs)) List.Empty vs :> 'T seq
+
+    type TakeVar<'T>(v : RVar<'T>, count : int) =
         interface RVar<'T array> with
-            override this.sample rsource = Array.init count (fun _ -> BaseVar.sample(rsource))
+            override this.Sample rsource = Array.init count (fun _ -> v.Sample(rsource))
     
+    //This seems to be as much as you can do with random computations. Yield cannot differ meaningfully
+    //from return so it is not provided. No useful zero exists.
     type RandomlyBuilder() =
         interface IRandomlyBuilder with
             member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>
             member this.Return(v) = ConstVar(v) :> RVar<'T>
             member this.ReturnFrom(v) = v
-            member this.For(vs, f) = SequenceVar(Seq.map f vs) :> RVar<'T seq>
+            member this.For(vs, f) = StrictSequenceVar(Seq.map f vs) :> RVar<'T seq>
+            //member this.Combine(v1, v2) = CombineVar(v1, v2) :> RVar<'T>

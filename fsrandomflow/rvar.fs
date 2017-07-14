@@ -1,7 +1,7 @@
 ﻿//Copyright 2017 Barend Venter
 //Licensed under the MIT license, see LICENSE
 
-namespace fsrandomflow
+namespace FsRandomFlow
 
 module RVar =
     open System.Collections.Generic
@@ -13,7 +13,7 @@ module RVar =
 
     let StdUniform = StdUniformClass() :> RVar<int>
 
-    let runrvar seed (rvar : RVar<'T>) = rvar.sample(twister(seed).GetEnumerator())
+    let runrvar seed (rvar : RVar<'T>) = rvar.Sample(twister(seed).GetEnumerator())
     
     //Note: if you use System.DateTime.Now.Ticks directly
     // then F# will emit a compiler warning
@@ -77,7 +77,7 @@ module RVar =
     let sequenceParallel (xs: RVar<'T> seq) = randomly {
             let! seeds = repeat StdUniform
             let pending = Seq.zip seeds xs |> Seq.toArray
-            return Array.Parallel.map(fun (seed, (x: RVar<'T>)) -> x.sample(twister(seed).GetEnumerator())) pending
+            return Array.Parallel.map(fun (seed, (x: RVar<'T>)) -> x.Sample(twister(seed).GetEnumerator())) pending
         }
 
     let takeParallel count xs = sequenceParallel (Seq.replicate count xs) 
@@ -165,6 +165,16 @@ module RVar =
                      let! outcome = UniformInterval(0.0,certainty,false,true) //[0.0,certainty)
                      return findOutcome outcome 0.0 scrubbedXs
                  }
+                 
+    let union xs = randomly {
+            let! (x : RVar<'T>) = oneOf xs
+            return! x
+        }
+
+    let unionWeighted xs = randomly {
+            let! (x : RVar<'T>) = oneOfWeighted xs
+            return! x
+        }
 
     let shuffle xs = 
             let rec doShuffle i (arr : 'T []) = randomly {
@@ -177,7 +187,41 @@ module RVar =
                 }
             doShuffle 0 (Array.ofSeq xs)
 
- 
+    let tableRow (arr : 'T [,]) = randomly {
+            let y = arr.GetLength(0)
+            let x = arr.GetLength(1)
+            let! r = UniformZeroAndUpBelow y
+            return 0
+                   |> Seq.unfold(fun i ->
+                       if i < x then Some(arr.[r,i], i+1)
+                       else None)
+        }
+
+    let tableColumn (arr : 'T [,]) = randomly {
+            let y = arr.GetLength(0)
+            let x = arr.GetLength(1)
+            let! c = UniformZeroAndUpBelow x
+            return 0
+                   |> Seq.unfold(fun i ->
+                       if i < y then Some(arr.[i,c], i+1)
+                       else None)
+        }
+
+    let tableRowWise (arr : 'T [,]) = randomly {
+                let y = arr.GetLength(0)
+                let x = arr.GetLength(1)
+                for i in [0 .. x-1] do
+                      let! j = UniformZeroAndUpBelow y
+                      return arr.[j,i]
+            }
+
+    let tableColumnWise (arr : 'T [,]) = randomly {
+                let y = arr.GetLength(0)
+                let x = arr.GetLength(1)
+                for j in [0 .. y-1] do
+                    let! i = UniformZeroAndUpBelow x
+                    return arr.[j,i]
+            }
 
     let standardNormalPdf x = (Math.E ** (-0.5 * (x ** 2.0))) / Math.Sqrt(2.0 * Math.PI)
     
@@ -224,13 +268,3 @@ module RVar =
     let Normal(mean,stdev) = map (fun outcome -> mean + stdev * outcome) StandardNormal
 
     let Exponential(inverseScale) = map (fun x -> (-Math.Log(x))/inverseScale) UniformAboveZeroBelowOne
-
-    let union xs = randomly {
-            let! (x : RVar<'T>) = oneOf xs
-            return! x
-        }
-
-    let unionWeighted xs = randomly {
-            let! (x : RVar<'T>) = oneOfWeighted xs
-            return! x
-        }

@@ -1,4 +1,4 @@
-﻿namespace fsrandomflow
+﻿namespace FsRandomFlow
 
 open System.Collections.Generic
 
@@ -6,7 +6,7 @@ open System.Collections.Generic
 ///A random variable that can be sampled as needed
 type RVar<'T> =
     ///Using a stream of random values, generate an example value of type 'T
-    abstract member sample : IEnumerator<int> -> 'T
+    abstract member Sample : IEnumerator<int> -> 'T
 
 
 [<Interface>]
@@ -15,3 +15,4 @@ type IRandomlyBuilder =
     abstract member Return : 'T -> RVar<'T>
     abstract member ReturnFrom : RVar<'T> -> RVar<'T>
     abstract member For : 'T seq * ('T -> RVar<'U>) -> RVar<'U seq>
+    //abstract member Combine : RVar<unit> * RVar<'T> -> RVar<'T>

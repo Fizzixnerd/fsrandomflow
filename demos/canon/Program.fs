@@ -7,8 +7,8 @@
 open NFugue
 open System.Text
 open System.IO
-open fsrandomflow
-open fsrandomflow.RVar
+open FsRandomFlow
+open FsRandomFlow.RVar
 
 //Unwords function for getting a string out of a sequence of words
 let rec intersperse x xs = 
@@ -25,6 +25,8 @@ let voice2 = Midi.Instrument.VoiceOohs
 let voice3 = Midi.Instrument.AcousticGuitarNylon
 let voice4 = Midi.Instrument.Harpsichord
 
+//The notes
+let noteStrings = [| "C"; "C#"; "D"; "Eb"; "E"; "F"; "F#"; "G"; "G#"; "A"; "Bb"; "B" |]
 //Major scale
 let ionian = [| "I"; "ii"; "iii"; "IV"; "V"; "vi"; "viio" |]
 //Minor scales
@@ -37,6 +39,12 @@ let phyrgian   = [| "i"; "II"; "III"; "iv"; "vo"; "VI"; "vii"|]
 let lydian     = [| "I"; "II"; "iii"; "ivo"; "V"; "vi"; "vii"|]
 let mixolydian = [| "I"; "ii"; "iiio"; "IV"; "v"; "vi"; "VII"|]
 let locrian    = [| "io"; "II"; "iii"; "iv"; "V"; "VI"; "vii"|]
+
+//Get notes from a scale, using a list of chords
+let getScaleNotes (mode : string[]) (key: string) =
+    NFugue.Theory.ChordProgression(mode).SetKey(key).GetChords()
+    |> Seq.map (fun x -> x.GetNotes().[0].ToString())
+    |> Array.ofSeq
 
 //Pecking order:
 //Major scale half the time
@@ -60,9 +68,7 @@ let scale =
                        ; (mode,locrian) ]
 
 //Get a string of Staccato markup to give to NFugue
-let progression = randomly {
-        //Get a scale
-        let! chordChoices = scale
+let progression (chordChoices : string []) = randomly {
         //Define the chord types with array indexes
         let tonic = RVar.constant 0
         let perfect = RVar.oneOf[3;4]
@@ -77,15 +83,28 @@ let progression = randomly {
                |> unwords
     }
 
-//Get a chord progression to use as the foundation for the canon
-let canonBase = randomly {
-        //Choose a key
-        let! root = RVar.oneOf([|"A"; "B"; "C"; "D"; "E"; "F"; "G"|])
-        //Get a chord progression
-        let! chords = progression
-        //Transpose the progression to the chosen key and return it
-        return NFugue.Theory.ChordProgression(chords).SetKey(root)
-    }
+//Model a little wigged and hatted man to articulate the instructions a little with eights and halves
+let rec articulate keyboard (incoming : string seq) =
+    //Done playing, move on
+    if Seq.isEmpty incoming then Seq.empty
+    else if Seq.isEmpty (Seq.tail incoming) then incoming
+    else
+        let s0 = Seq.head incoming
+        let s1 = Seq.head (Seq.tail incoming)
+        //If the two strings are the same, return a half note
+        if s0.ToUpper() = s1.ToUpper() then seq {yield (s0 + "h"); yield! articulate keyboard (Seq.tail (Seq.tail incoming))}
+        else
+            let keyboardSize = Array.length keyboard
+            //Tween any third intervals that are within the scale, but not accross the octave
+            let i0 = keyboard |> Array.tryFindIndex(fun (s: string) -> s.ToUpper() = s0.ToUpper()) 
+            let i1 = keyboard |> Array.tryFindIndex(fun (s: string) -> s.ToUpper() = s1.ToUpper())
+            match (i0, i1) with
+                | (Some(i0'),Some(i1')) ->
+                    let imin = min i0' i1'
+                    let imax = max i0' i1'
+                    if imax - imin = 2 then seq { yield s0 + "i"; yield keyboard.[imin+1] + "i"; yield! articulate keyboard (Seq.tail incoming) }
+                    else seq { yield s0; yield! articulate keyboard (Seq.tail incoming) }
+                | _ -> seq {yield s0; yield! articulate keyboard (Seq.tail incoming)}
 
 //Get a random canon, ready to be played
 let canon =
@@ -101,26 +120,32 @@ let canon =
             }
         randomly {
             //Get a chord progression
-            let! prog = canonBase
-            let notes = prog.GetChords() |> Array.map(fun x -> x.GetNotes())
+            let! key = RVar.oneOf(noteStrings)
+            let! mode = scale
+            let! prog = progression mode
+            let chords = NFugue.Theory.ChordProgression(prog).SetKey(key)
+            let keyboard = getScaleNotes mode key
+            let notes = chords.GetChords() |> Array.map(fun x -> x.GetNotes())
             //Choose the notes in the chords to be played
             let! start = getfst
             let! ending = getlst
             let! mids = RVar.take 6 (RVar.shuffle[0;1;2])
-            let result = seq { yield start; yield! mids; yield ending }
+            let noteLine = seq { yield start; yield! mids; yield ending }
             //Extract the chosen notes out of the chords
-            let getLine n = result |> Seq.map(fun x -> x.[n]) 
-            let melody() = 
+            let getLine n = noteLine |> Seq.map(fun x -> x.[n]) 
+            let notes = 
                 seq {yield! getLine 0; yield! getLine 1; yield! getLine 2}
-                |> Seq.mapi(fun i j -> notes.[i % 8].[j].GetPattern() :> NFugue.Patterns.IPatternProducer)
-                |> Array.ofSeq
-                |> (fun x -> NFugue.Patterns.Pattern(x))
+                |> Seq.mapi(fun i j -> notes.[i % 8].[j].ToString())//.GetPattern()) :> NFugue.Patterns.IPatternProducer)
+                |> articulate keyboard
+                |> unwords
+                |> NFugue.Patterns.Pattern
+            let melody() = NFugue.Patterns.Pattern(notes)
             //Set up and return a track table after writing the canon into itue
             let tracks = Patterns.TrackTable(13,0.5)
-            let (m1,m2,m3,m4) = ((melody()).SetInstrument(voice1).SetVoice(1).AddToEachNoteToken("4"),
-                                 (melody()).SetInstrument(voice2).SetVoice(2).AddToEachNoteToken("3"),
-                                 (melody()).SetInstrument(voice3).SetVoice(3).AddToEachNoteToken("2"),
-                                 (melody()).SetInstrument(voice4).SetVoice(4).AddToEachNoteToken("1"))
+            let (m1,m2,m3,m4) = ((melody()).SetInstrument(voice1).SetVoice(1),
+                                 (melody()).SetInstrument(voice2).SetVoice(2),
+                                 (melody()).SetInstrument(voice3).SetVoice(3),
+                                 (melody()).SetInstrument(voice4).SetVoice(4))
             return tracks.Add(1,0,m1).Add(2,4,m2).Add(3,8,m3).Add(4,12,m4)
         }
 

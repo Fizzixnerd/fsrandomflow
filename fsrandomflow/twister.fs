@@ -1,7 +1,7 @@
 ﻿//Copyright (c) 2017 Barend Venter
 //This code liscensed under the MIT license, see LICENSE
 
-namespace fsrandomflow
+namespace FsRandomFlow
 
 module Twister =
 

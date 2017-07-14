@@ -6,8 +6,8 @@
 #load "types.fs"
 #load "RVarAST.fs"
 #load "RVar.fs"
-open fsrandomflow
-open fsrandomflow.RVar
+open FsRandomFlow
+open FsRandomFlow.RVar
 
 ///Roll 4 d6, reroll the 1s, drop the lowest
 let dnd5eAttrRollHouseRules = randomly {
