@@ -155,7 +155,7 @@ let printUsage () =
 let getSeed str = 
     let nseed = ref 0
     if System.Int32.TryParse(str,nseed) then nseed.Value
-    else str.GetHashCode()
+    else str.ToUpper().GetHashCode()
 
 let writeCanon path seed = 
     let music = RVar.runrvar seed canon
