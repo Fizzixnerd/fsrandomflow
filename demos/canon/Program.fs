@@ -170,6 +170,10 @@ let playCanon name seed =
     use player = new NFugue.Playing.Player()
     player.Play(music)
 
+let play () =
+    let seed = (int)System.DateTime.Now.Ticks
+    playCanon (seed.ToString()) seed
+
 //Append a file extension to the output if the user didn't give one
 let appendMid (str : string) = if not (str.EndsWith(".mid")) then str+".mid" else str
 
@@ -181,7 +185,7 @@ let main argv =
         let nargs = argv.Length
         if nargs = 2 && argv.[0] = "-o" then writeCanon (appendMid argv.[1]) (getSeed argv.[1])
         else if nargs = 1 then playCanon (argv.[0]) (getSeed argv.[0])
-        else if nargs = 0 then let seed = (int)System.DateTime.Now.Ticks in playCanon (seed.ToString()) seed
+        else if nargs = 0 then play()
         else printUsage()
     else
         System.Console.WriteLine("This platform is not supported")
