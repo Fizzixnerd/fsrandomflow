@@ -1,4 +1,7 @@
-﻿namespace FsRandomFlow
+﻿//Copyright 2017, Barend Venter
+//This code is provided under the MIT license, see LICENSE
+
+namespace FsRandomFlow
 
 open System.Collections.Generic
 
