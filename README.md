@@ -1,8 +1,9 @@
 # fsrandomflow
 
-## Introduction
+Copyright 2017, Barend Venter
 
-**fsrandomflow** allows random computations to be expressed without explicitly sampling a random generator until the end. This means that you can seed the generator once you are ready to run the full computation.
+**fsrandomflow** is an F# library that allows for random computations to be expressed without explicitly sampling a random generator until the end. This means that you can seed the generator once you are ready to run the full computation.
+It was inspired by the Haskell libraries **MonadRandom** and **random-fu**. While less important in an effectful functional language like F#, the determinism and syntax sugar allowed by typed random variables provides the motivation here.
 
 The provided random computations are built to be entirely deterministic on the original seed. By combining the original generators (and obviously, avoiding IO), any random variable a user creates should have this same deterministic property.
 
