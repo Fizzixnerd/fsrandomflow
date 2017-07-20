@@ -268,3 +268,5 @@ module RVar =
     let Normal(mean,stdev) = map (fun outcome -> mean + stdev * outcome) StandardNormal
 
     let Exponential(inverseScale) = map (fun x -> (-Math.Log(x))/inverseScale) UniformAboveZeroBelowOne
+
+    let Weibull(k,lambda) = map (fun x -> lambda * (Math.Pow(-Math.Log(x),(1.0/k)))) UniformAboveZeroBelowOne

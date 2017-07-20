@@ -263,14 +263,22 @@ namespace FsRandomFlow
         ///<returns>A random variable, that, when sampled, retrieves a random column
         ///from some 2D array</returns>
         ///<example><code>tableColumn (array2D [['1';'2';'3'];['4';'5';'6'];['7';'8';'9'];['*';'0';'#']])</code>
-        ///can be sampled for any of the four element columns <code>['1';'4';'7';'*']</code>, <code>['4';'5';'6']</code>,
-        ///<code>['7';'8';'9']</code>, or <code>['*';'0';'#']</code></example>
+        ///can be sampled for any of the four element columns <code>['1';'4';'7';'*']</code>, <code>['2';'5';'8';'0']</code>,
+        ///or <code>['3';'6';'9';'#']</code></example>
         val tableColumn : 'T [,] -> RVar<'T seq>
         
-        ///Get one element from each column in a 2D array
+        ///<summary>Creates a new random variable that, when sampled, 
+        ///retrieves a random element from each column in a given 2D array.</summary>
+        ///<param name="arr">A 2D array for which to retrieve randomized row</param>
+        ///<returns>A random variable, that, when sampled, retrieves a randomized row
+        ///built from columns of some 2D array</returns>
         val tableRowWise : 'T [,] -> RVar<'T seq>
-
-        ///Get one element from each row in a 2D array
+        
+        ///<summary>Creates a new random variable that, when sampled, 
+        ///retrieves a random element from each row in a given 2D array.</summary>
+        ///<param name="arr">A 2D array for which to retrieve randomized column</param>
+        ///<returns>A random variable, that, when sampled, retrieves a randomized column
+        ///built from rows of some 2D array</returns>
         val tableColumnWise : 'T [,] -> RVar<'T seq>
 
         ///<summary>Perform a single coin flip.</summary>
@@ -322,8 +330,8 @@ namespace FsRandomFlow
         ///within these bounds have an equal chance of being selected.
         ///The bounds can be given in any order.
         ///</summary>
-        ///<param name=n1>A boundary for a closed interval</param>
-        ///<param name=n2>A boundary for a closed interval</param>
+        ///<param name="n1">A boundary for a closed interval</param>
+        ///<param name="n2">A boundary for a closed interval</param>
         ///<returns>A random variable that, when sampled, returns an integer
         ///bounded in a certain range</returns>
         val UniformInt : int * int -> RVar<int>
@@ -331,17 +339,50 @@ namespace FsRandomFlow
         ///A random variable that, when sampled, yields a double between 0 and 1,
         ///inclusive
         val UniformZeroToOne : RVar<float>
-
-        ///A random variable that, when sampled, yields a double  0 and 1,
+        
+        ///<summary>A random variable that, when sampled, yields an
+        ///double in between the two given bounds. All double
+        ///within these bounds have an equal chance of being selected.
+        ///The bounds are given lowest first, then highest. You must
+        ///specify if the bounds are open or closed.
+        ///</summary>
+        ///<param name="minVal">A lower bound for an interval</param>
+        ///<param name="maxVal">An upper bound for an interval</param>
+        ///<param name="minOpen">Whether or not the lower bound is an open bound.</param>
+        ///<param name="maxOpen">Whether or not the upper bound is an open bound.</param>
+        ///<returns>A random variable that, when sampled, returns some double
+        ///bounded in a certain range</returns>
         val UniformInterval : float * float * bool * bool -> RVar<float>
-
-        ///Gets a Double bound inside a given closed interval
+        
+        ///<summary>A random variable that, when sampled, yields an
+        ///double in between the two given bounds, inclusive. All doubles
+        ///within these bounds have an equal chance of being selected.
+        ///The bounds can be given in any order.
+        ///</summary>
+        ///<param name="x">A boundary for a closed interval</param>
+        ///<param name="y">A boundary for a closed interval</param>
+        ///<returns>A random variable that, when sampled, returns an double
+        ///bounded in a certain range</returns>
         val UniformIntervalClosed : float * float -> RVar<float>
-
-        ///Gets a double bound inside a given open interval
+        
+        ///<summary>A random variable that, when sampled, yields an
+        ///double in between the two given bounds, exclusive.
+        ///All doubles
+        ///within these bounds have an equal chance of being selected.
+        ///The bounds can be given in any order.
+        ///</summary>
+        ///<param name="x">A boundary for an open interval</param>
+        ///<param name="y">A boundary for an open interval</param>
+        ///<returns>A random variable that, when sampled, returns an double
+        ///bounded in a certain range</returns>
         val UniformIntervalOpen : float * float -> RVar<float>
-
-        ///A boolean, the chance of it being true is the given probability
+        
+        ///<summary>A random variable that, when sampled, yields true
+        ///with the given probability.
+        ///</summary>
+        ///<param name="p">The chance that this variable will be true</param>
+        ///<returns>A random variable that, when sampled, returns true with
+        ///some probability.</returns>
         val probability : float -> RVar<bool>
 
 
@@ -355,3 +396,25 @@ namespace FsRandomFlow
         ///<param name="stdDev">A standard deviation that will widen
         ///the bell curve</param>
         val Normal : (float * float) -> RVar<float>
+        
+        ///<summary>A random variable that, when sampled, gets a double from an 
+        /// exponential distribution with a given inverse scale.</summary>
+        ///<param name="inverseScale">The rate at which the probability
+        ///of a higher number occuring declines</param>
+        ///<returns>A random variable that, when sampled, gets a double from an
+        /// exponential distribution.</returns>
+        val Exponential : float -> RVar<float>
+        
+        ///<summary>A random variable that, when sampled, gets a double from an 
+        /// Weibull distribution with given parameters, giving times to failure.</summary>
+        ///<param name="k">The nature of the failure rate. If it is negative, failure rate
+        ///decreases with time as defective examples fail first. If it is one, the failure
+        ///rate is constant with time. If it is greater than one, failure becomes more likely
+        ///with time.</param>
+        ///<param name="lambda">The rate at which the probability
+        ///of a higher number occuring declines</param>
+        ///<returns>A random variable that, when sampled, gets a double from some Weibull
+        ///distribution.</returns>
+        val Weibull : (float * float) -> RVar<float>
+
+

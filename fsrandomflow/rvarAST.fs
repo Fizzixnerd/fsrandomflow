@@ -85,6 +85,13 @@ module RVarAST =
     type TakeVar<'T>(v : RVar<'T>, count : int) =
         interface RVar<'T array> with
             override this.Sample rsource = Array.init count (fun _ -> v.Sample(rsource))
+
+    type WhileVar<'T>(v : RVar<'T>, pred : 'T -> bool) =
+        interface RVar<'T> with
+            override this.Sample rsource = 
+                let mutable result = v.Sample rsource
+                while(pred result) do result <- v.Sample rsource
+                result
     
     //This seems to be as much as you can do with random computations. Yield cannot differ meaningfully
     //from return so it is not provided. No useful zero exists.
@@ -93,5 +100,5 @@ module RVarAST =
             member this.Bind(v, f) = BindVar(v,f) :> RVar<'T>
             member this.Return(v) = ConstVar(v) :> RVar<'T>
             member this.ReturnFrom(v) = v
-            member this.For(vs, f) = StrictSequenceVar(Seq.map f vs) :> RVar<'T seq>
+            member this.For(vs, f) = Spark(SequenceVar(Seq.map f vs)) :> RVar<'T seq>
             //member this.Combine(v1, v2) = CombineVar(v1, v2) :> RVar<'T>
