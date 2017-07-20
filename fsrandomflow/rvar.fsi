@@ -3,13 +3,6 @@
 
 namespace FsRandomFlow
     open System.Collections.Generic
-
-//    /// A random variable of a particular type. Don't implement this interface, use the RVar combinators instead.
-//    [<Interface>]
-//    type RVar<'T> =
-//        ///Using a stream of random values, generate an example value of type 'T
-//        abstract member sample : IEnumerator<int> -> 'T
-
     module RVar =
         ///A builder for expressions of type RVar
         val randomly : IRandomlyBuilder
@@ -41,7 +34,7 @@ namespace FsRandomFlow
         ///non-deterministically.</summary>
         ///<param name="rvar">The random variable to be sampled using some 
         ///seed chosen by the system.</param>
-        ///<returns>A sample taken from the random variable.</return>
+        ///<returns>A sample taken from the random variable.</returns>
         val runrvarIO : RVar<'T> -> 'T
 
         ///<summary>Builds a new random variable of type <c>RVar&lt;'U&gt;</c> by
@@ -79,7 +72,7 @@ namespace FsRandomFlow
         ///<param name="v">A random variable that will be sampled for an input to
         ///the given function <c>f</c></param>
         ///<returns>A random variable which samples the results of <c>f</c> when given
-        ///samples of <c>v</v>
+        ///samples of <c>v</c></returns>
         val concatMap : ('T -> RVar<'U>) -> RVar<'T> -> RVar<'U>
 
         ///<summary>Creates a random variable that, when sampled, samples
@@ -154,7 +147,7 @@ namespace FsRandomFlow
 
         ///<summary>Creates a random variable from a sequence of random
         ///variables, that, when sampled, samples each random variable
-        ///given in order and samples from it.
+        ///given in order.
         ///</summary>
         ///<param name="xs">A sequence of random variables to sample in order.
         ///The given sequence has to be finite.</param>
@@ -167,7 +160,7 @@ namespace FsRandomFlow
         ///produces an enumerator that samples each provided random
         ///variable in order using a branched random generator.
         ///</summary>
-        ///<param name="xs>A sequence of random variables that will be sampled
+        ///<param name="xs">A sequence of random variables that will be sampled
         ///from in order using a branch of the random number generator.
         ///This sequence is allowed to be infinite.
         ///</param>
@@ -190,12 +183,11 @@ namespace FsRandomFlow
         ///<summary>Creates a random variable that, when sampled, returns one of the given values, each with the same probabilty.
         ///</summary>
         ///<param name="xs">A list of values, one of which will be returned at random.</param>
-        ///<example><code>
         val oneOf : seq<'T> -> RVar<'T>
         
         ///<summary>Creates a random variable, that, when sampled, returns one possibility out of many, 
-        ///with given weights. Weights will be ignored if they are not greater than 0, and do not 
-        ///need to be given normalized.</summary>
+        ///with given weights. Weights will be ignored if they are not greater than 0.</summary>
+        ///<remarks>The weights do not need to be given normalized.</remarks>
         val oneOfWeighted : seq<float * 'T> -> RVar<'T>
 
         ///<summary>Create a random variable that samples from some number of other random variables with equal chance.</summary>
@@ -210,18 +202,21 @@ namespace FsRandomFlow
         val unionWeighted : (float * RVar<'T>) seq -> RVar<'T>
         
 
-        ///Shuffles a finite input. A new array is allocated to hold the output.
+        ///<summary>Shuffles a finite input. A new array is allocated to hold the output.</summary>
+        ///<param name="xs">A collection to be shuffled</param>
+        ///<returns>A random variable that, when sampled, produces permutations of some array.</returns>
         val shuffle : seq<'T> -> RVar<'T []>
 
         ///<summary>Creates a new random variable that, when sampled, 
         ///samples another random variable repeatedly until the sampled
-        ///value satisfies a given predicate. If the predicate is not
-        ///satisfiable on the sample space for that variable, this
-        ///will loop forever when sampled.</summary>
+        ///value satisfies a given predicate.</summary>
         ///<param name="f">A predicate which any produced sample should
         ///satisfy</param>
         ///<param name="v">A random variable that will be sampled to produce
         ///candidate samples to be tested by the predicate</param>
+        ///<remarks>If the predicate is not
+        ///satisfiable on the sample space for that variable, this
+        ///will loop forever when sampled.</remarks>
         ///<returns>A random variable that, when sampled, samples another 
         ///random variable until the sample satisfies some predicate.
         ///</returns>
@@ -229,11 +224,7 @@ namespace FsRandomFlow
 
         ///<summary>Creates a new random variable that, when sampled, 
         ///samples another random variable repeatedly until the sampled
-        ///value satisfies a given predicate. The predicate is itself
-        ///allowed to use randomness to determine if the value satisfies
-        ///it or not. If the predicate is not
-        ///satisfiable on the sample space for that variable, this
-        ///will loop forever when sampled.</summary>
+        ///value passes a randomized test.</summary>
         ///<param name="f">A randomized predicate which any produced
         ///satisfied successfully</param>
         ///<param name="v">A random variable that will be sampled to produce
@@ -245,6 +236,9 @@ namespace FsRandomFlow
         ///<example><code>filterRandomly probability UniformZeroToOne</code>
         ///will return a number between 0 and 1, tending toward high numbers,
         ///and always rejecting zero.</example>
+        ///<remarks>If the randomized predicate is not
+        ///satisfiable on the sample space for that variable, this
+        ///will loop forever when sampled.</remarks>
         val filterRandomly : ('T -> RVar<bool>) -> RVar<'T> -> RVar<'T>
 
         ///<summary>Creates a new random variable that, when sampled, 
