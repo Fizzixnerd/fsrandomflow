@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fsrandomflow", "fsrandomflow\fsrandomflow.fsproj", "{D94E2B52-AE55-44BC-A69B-8F2D5649A2B3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{46998C44-450B-4BD4-B6BB-35B6F4CCB012}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "starfield", "demos\starfield\starfield.fsproj", "{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "canon", "demos\canon\canon.fsproj", "{9EC7A141-F19C-43C0-84B8-03CE114D9B15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{68C911F5-9C66-4C29-8BD2-A9CCFB0CA7D6}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "fsrandomflowDoc", "docs\fsrandomflowDoc\fsrandomflowDoc.shfbproj", "{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{FA6E775F-4DCA-471B-8313-28F7E22C6456}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsRandomFlow", "src\FsRandomFlow\FsRandomFlow.fsproj", "{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7CFCA31B-5079-4179-9AC3-08F6B94B6B58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,16 +25,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D94E2B52-AE55-44BC-A69B-8F2D5649A2B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D94E2B52-AE55-44BC-A69B-8F2D5649A2B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D94E2B52-AE55-44BC-A69B-8F2D5649A2B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D94E2B52-AE55-44BC-A69B-8F2D5649A2B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,5 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04} = {46998C44-450B-4BD4-B6BB-35B6F4CCB012}
 		{9EC7A141-F19C-43C0-84B8-03CE114D9B15} = {46998C44-450B-4BD4-B6BB-35B6F4CCB012}
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B} = {68C911F5-9C66-4C29-8BD2-A9CCFB0CA7D6}
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72} = {FA6E775F-4DCA-471B-8313-28F7E22C6456}
 	EndGlobalSection
 EndGlobal
