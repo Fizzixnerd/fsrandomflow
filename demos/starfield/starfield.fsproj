@@ -9,10 +9,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>starfield</RootNamespace>
     <AssemblyName>starfield</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>starfield</Name>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,7 +125,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FsRandomFlow\FsRandomFlow.fsproj">
+    <ProjectReference Include="..\..\lib\FsRandomFlow\FsRandomFlow.fsproj">
       <Name>FsRandomFlow</Name>
       <Project>{9cf1461c-8e8d-41f5-b7fd-42c853eefa72}</Project>
       <Private>True</Private>

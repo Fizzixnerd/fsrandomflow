@@ -15,9 +15,9 @@ Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "fsrandomflowDoc", "docs\fsr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{FA6E775F-4DCA-471B-8313-28F7E22C6456}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsRandomFlow", "src\FsRandomFlow\FsRandomFlow.fsproj", "{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7CFCA31B-5079-4179-9AC3-08F6B94B6B58}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsRandomFlow", "lib\FsRandomFlow\FsRandomFlow.fsproj", "{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

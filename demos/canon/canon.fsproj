@@ -128,7 +128,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FsRandomFlow\FsRandomFlow.fsproj">
+    <ProjectReference Include="..\..\lib\FsRandomFlow\FsRandomFlow.fsproj">
       <Name>FsRandomFlow</Name>
       <Project>{9cf1461c-8e8d-41f5-b7fd-42c853eefa72}</Project>
       <Private>True</Private>

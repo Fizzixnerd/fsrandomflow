@@ -28,6 +28,7 @@
     </TransformComponentArguments>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\..\src\FsRandomFlow\FsRandomFlow.fsproj" />
+      <DocumentationSource sourceFile="..\..\lib\FsRandomFlow\FsRandomFlow.fsproj" />
     </DocumentationSources>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
@@ -76,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\VersionHistory\v0.0.1.0.aml" />
-    <None Include="Content\VersionHistory\v1.0.0.0.aml" />
     <None Include="Content\VersionHistory\VersionHistory.aml" />
     <None Include="Content\Welcome.aml" />
   </ItemGroup>
@@ -87,7 +87,7 @@
     <Content Include="icons\Help.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FsRandomFlow\FsRandomFlow.fsproj">
+    <ProjectReference Include="..\..\lib\FsRandomFlow\FsRandomFlow.fsproj">
       <Name>FsRandomFlow</Name>
       <Project>{9cf1461c-8e8d-41f5-b7fd-42c853eefa72}</Project>
       <Private>True</Private>
