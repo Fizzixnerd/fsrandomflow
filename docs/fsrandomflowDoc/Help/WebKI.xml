@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="apply(Of T, U) method" Url="html/c5770155-b450-99d1-6584-f452b33a56b2.htm" />
+  <HelpKINode Title="apply&lt;T, U&gt; method" Url="html/c5770155-b450-99d1-6584-f452b33a56b2.htm" />
+  <HelpKINode Title="ApplyVar(Of T, U) class">
+    <HelpKINode Title="methods" Url="html/8dcec5eb-0eb1-e91c-845c-4f236b07d216.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ApplyVar&lt;T, U&gt; class">
+    <HelpKINode Title="methods" Url="html/8dcec5eb-0eb1-e91c-845c-4f236b07d216.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Bind(Of T, U) method" Url="html/ea3a1705-cefb-293b-4e3c-c6467d5064cf.htm" />
+  <HelpKINode Title="Bind&lt;T, U&gt; method" Url="html/ea3a1705-cefb-293b-4e3c-c6467d5064cf.htm" />
+  <HelpKINode Title="BindVar(Of T, U) class">
+    <HelpKINode Title="methods" Url="html/6d0be338-cb93-8f25-53f3-c35505458c89.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BindVar&lt;T, U&gt; class">
+    <HelpKINode Title="methods" Url="html/6d0be338-cb93-8f25-53f3-c35505458c89.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Branch method" Url="html/8baa8a9a-a684-4920-8c4f-5fc089e86a9b.htm" />
+  <HelpKINode Title="CoinFlip property" Url="html/bf5303ba-797d-8786-a5dd-7bbb2750752e.htm" />
+  <HelpKINode Title="CombineVar(Of T, U) class">
+    <HelpKINode Title="methods" Url="html/627bbd57-ecdb-6cf1-964d-7cd16d65c0f1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CombineVar&lt;T, U&gt; class">
+    <HelpKINode Title="methods" Url="html/627bbd57-ecdb-6cf1-964d-7cd16d65c0f1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="concatMap(Of T, U) method" Url="html/f5853a71-4791-a7a3-d1c7-9dcb46994a20.htm" />
+  <HelpKINode Title="concatMap&lt;T, U&gt; method" Url="html/f5853a71-4791-a7a3-d1c7-9dcb46994a20.htm" />
+  <HelpKINode Title="constant(Of T) method" Url="html/650dc2f1-fb69-2a90-7afc-c81a4b263b24.htm" />
+  <HelpKINode Title="constant&lt;T&gt; method" Url="html/650dc2f1-fb69-2a90-7afc-c81a4b263b24.htm" />
+  <HelpKINode Title="ConstVar(Of T) class">
+    <HelpKINode Title="methods" Url="html/68445364-7142-b95e-d9a1-bf3ee2562a33.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConstVar&lt;T&gt; class">
+    <HelpKINode Title="methods" Url="html/68445364-7142-b95e-d9a1-bf3ee2562a33.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Exponential method" Url="html/6a6ec774-3eb3-33f6-e391-224a24fa007a.htm" />
+  <HelpKINode Title="filter(Of T) method" Url="html/478531a1-2cad-d803-20df-8f91aef3055c.htm" />
+  <HelpKINode Title="filter&lt;T&gt; method" Url="html/478531a1-2cad-d803-20df-8f91aef3055c.htm" />
+  <HelpKINode Title="filterRandomly(Of T) method" Url="html/a65ed96c-0c29-06dc-525b-3a3218bd3a28.htm" />
+  <HelpKINode Title="filterRandomly&lt;T&gt; method" Url="html/a65ed96c-0c29-06dc-525b-3a3218bd3a28.htm" />
+  <HelpKINode Title="For(Of T, U) method" Url="html/93038142-e4da-a0b0-eddc-afcbb3cc78b2.htm" />
+  <HelpKINode Title="For&lt;T, U&gt; method" Url="html/93038142-e4da-a0b0-eddc-afcbb3cc78b2.htm" />
+  <HelpKINode Title="FsRandomFlow namespace" Url="html/c4c2cd25-33fa-e729-8527-58995867aea5.htm" />
+  <HelpKINode Title="FsRandomFlow.IRandomlyBuilder interface" Url="html/1b4e9d2c-0749-8e75-7b89-c719b41cfbb3.htm" />
+  <HelpKINode Title="FsRandomFlow.RVar class" Url="html/929775f3-9565-b3cd-8ff5-b83f9e3a9c2f.htm" />
+  <HelpKINode Title="FsRandomFlow.RVar(Of T) interface" Url="html/61aeb3d1-1146-1827-669b-664a5ed30e61.htm" />
+  <HelpKINode Title="FsRandomFlow.RVar&lt;T&gt; interface" Url="html/61aeb3d1-1146-1827-669b-664a5ed30e61.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST class" Url="html/6c524ba6-00bb-8a55-ed2b-a5606c702ee8.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.ApplyVar(Of T, U) class" Url="html/4bdc455e-a300-b8e2-b246-a58e6b8e8e52.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.ApplyVar&lt;T, U&gt; class" Url="html/4bdc455e-a300-b8e2-b246-a58e6b8e8e52.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.BindVar(Of T, U) class" Url="html/00281ef3-b2d1-0d3c-2c3e-ac386358e6ee.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.BindVar&lt;T, U&gt; class" Url="html/00281ef3-b2d1-0d3c-2c3e-ac386358e6ee.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.CombineVar(Of T, U) class" Url="html/7f78192f-734c-4c0e-83c0-00c256590cfe.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.CombineVar&lt;T, U&gt; class" Url="html/7f78192f-734c-4c0e-83c0-00c256590cfe.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.ConstVar(Of T) class" Url="html/701758bd-c5a3-51f1-c570-59a3a57d6dc1.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.ConstVar&lt;T&gt; class" Url="html/701758bd-c5a3-51f1-c570-59a3a57d6dc1.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.MappedVar(Of T, U) class" Url="html/4e53ebd5-0bdc-0c69-9e67-83101ed0a3ea.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.MappedVar&lt;T, U&gt; class" Url="html/4e53ebd5-0bdc-0c69-9e67-83101ed0a3ea.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.RandomlyBuilder class" Url="html/07e5440a-4c92-b5a4-1fa9-12b7934b26e0.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.SequenceVar(Of T) class" Url="html/80544aa7-55c3-5e14-471d-7d310e2f777c.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.SequenceVar&lt;T&gt; class" Url="html/80544aa7-55c3-5e14-471d-7d310e2f777c.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.Spark(Of T) class" Url="html/5e8dec16-30d5-2819-4a20-88cd0b353d3e.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.Spark&lt;T&gt; class" Url="html/5e8dec16-30d5-2819-4a20-88cd0b353d3e.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.StdUniformClass class" Url="html/11c24bda-3266-aa5d-3ff5-632e39c9eb8a.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.Streaming(Of T) class" Url="html/60c8cae4-830b-dd1a-e301-68864f3cb125.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.Streaming&lt;T&gt; class" Url="html/60c8cae4-830b-dd1a-e301-68864f3cb125.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.StrictSequenceVar(Of T) class" Url="html/9396d515-abbe-9097-396b-41edc5651a2e.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.StrictSequenceVar&lt;T&gt; class" Url="html/9396d515-abbe-9097-396b-41edc5651a2e.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.TakeVar(Of T) class" Url="html/0f3014fa-2c5e-cab5-e4e8-6e871c1685b2.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.TakeVar&lt;T&gt; class" Url="html/0f3014fa-2c5e-cab5-e4e8-6e871c1685b2.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.WhileVar(Of T) class" Url="html/da46a9ea-e4b2-becf-93fe-eb114ccd0d7f.htm" />
+  <HelpKINode Title="FsRandomFlow.RVarAST.WhileVar&lt;T&gt; class" Url="html/da46a9ea-e4b2-becf-93fe-eb114ccd0d7f.htm" />
+  <HelpKINode Title="FsRandomFlow.Twister class" Url="html/e481e9a7-33be-0bb1-6973-1065a8012789.htm" />
+  <HelpKINode Title="IRandomlyBuilder interface">
+    <HelpKINode Title="IRandomlyBuilder Interface" Url="html/1b4e9d2c-0749-8e75-7b89-c719b41cfbb3.htm" />
+    <HelpKINode Title="about IRandomlyBuilder interface" Url="html/1b4e9d2c-0749-8e75-7b89-c719b41cfbb3.htm" />
+    <HelpKINode Title="methods" Url="html/0616ea15-3892-9c56-affe-96e559474e86.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IRandomlyBuilder.Bind(Of T, U) method" Url="html/ea3a1705-cefb-293b-4e3c-c6467d5064cf.htm" />
+  <HelpKINode Title="IRandomlyBuilder.Bind&lt;T, U&gt; method" Url="html/ea3a1705-cefb-293b-4e3c-c6467d5064cf.htm" />
+  <HelpKINode Title="IRandomlyBuilder.For(Of T, U) method" Url="html/93038142-e4da-a0b0-eddc-afcbb3cc78b2.htm" />
+  <HelpKINode Title="IRandomlyBuilder.For&lt;T, U&gt; method" Url="html/93038142-e4da-a0b0-eddc-afcbb3cc78b2.htm" />
+  <HelpKINode Title="IRandomlyBuilder.Return(Of T) method" Url="html/1d1f65a4-eaee-8ae6-22b9-7c3e41ee8635.htm" />
+  <HelpKINode Title="IRandomlyBuilder.Return&lt;T&gt; method" Url="html/1d1f65a4-eaee-8ae6-22b9-7c3e41ee8635.htm" />
+  <HelpKINode Title="IRandomlyBuilder.ReturnFrom(Of T) method" Url="html/0968434a-1f0f-1d91-3b92-709186b12fae.htm" />
+  <HelpKINode Title="IRandomlyBuilder.ReturnFrom&lt;T&gt; method" Url="html/0968434a-1f0f-1d91-3b92-709186b12fae.htm" />
+  <HelpKINode Title="map(Of T, U) method" Url="html/47d4b83d-33e1-c367-2bd1-8b2079c3f546.htm" />
+  <HelpKINode Title="map&lt;T, U&gt; method" Url="html/47d4b83d-33e1-c367-2bd1-8b2079c3f546.htm" />
+  <HelpKINode Title="MappedVar(Of T, U) class">
+    <HelpKINode Title="methods" Url="html/13a887ed-b40f-14dd-c99a-c184b5a6df0d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MappedVar&lt;T, U&gt; class">
+    <HelpKINode Title="methods" Url="html/13a887ed-b40f-14dd-c99a-c184b5a6df0d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Normal method" Url="html/8edaa9b5-116d-0619-9dbb-48c44dd3cd58.htm" />
+  <HelpKINode Title="oneOf(Of T) method" Url="html/f4ceb4fb-eed9-1bd4-0887-b4aac2ff4343.htm" />
+  <HelpKINode Title="oneOf&lt;T&gt; method" Url="html/f4ceb4fb-eed9-1bd4-0887-b4aac2ff4343.htm" />
+  <HelpKINode Title="oneOfWeighted(Of T) method" Url="html/4340b026-91cb-1c24-7fcd-78d587f5f79e.htm" />
+  <HelpKINode Title="oneOfWeighted&lt;T&gt; method" Url="html/4340b026-91cb-1c24-7fcd-78d587f5f79e.htm" />
+  <HelpKINode Title="probability method" Url="html/190a532a-3e14-2217-a89b-34810567321c.htm" />
+  <HelpKINode Title="randomly property" Url="html/0a304f3e-5715-abf5-644e-44ca5a587b01.htm" />
+  <HelpKINode Title="RandomlyBuilder class">
+    <HelpKINode Title="methods" Url="html/b3530c07-a318-0a55-ac91-6f6cac4b5e45.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RandomlySignedDouble method" Url="html/5569acde-9c87-698d-0a5a-c6f13a320817.htm" />
+  <HelpKINode Title="RandomlySignedFloat method" Url="html/e30fc680-684c-cbe7-16d4-aa83a62e1aff.htm" />
+  <HelpKINode Title="RandomlySignedInt method" Url="html/5f9ec764-09c8-55ed-d364-10bd32899fca.htm" />
+  <HelpKINode Title="repeat(Of T) method" Url="html/36ccf8ec-920c-a8fd-0618-730c86b60639.htm" />
+  <HelpKINode Title="repeat&lt;T&gt; method" Url="html/36ccf8ec-920c-a8fd-0618-730c86b60639.htm" />
+  <HelpKINode Title="Return(Of T) method" Url="html/1d1f65a4-eaee-8ae6-22b9-7c3e41ee8635.htm" />
+  <HelpKINode Title="Return&lt;T&gt; method" Url="html/1d1f65a4-eaee-8ae6-22b9-7c3e41ee8635.htm" />
+  <HelpKINode Title="ReturnFrom(Of T) method" Url="html/0968434a-1f0f-1d91-3b92-709186b12fae.htm" />
+  <HelpKINode Title="ReturnFrom&lt;T&gt; method" Url="html/0968434a-1f0f-1d91-3b92-709186b12fae.htm" />
+  <HelpKINode Title="runrvar(Of T) method" Url="html/459863ad-bd31-7415-1456-3a35586149c8.htm" />
+  <HelpKINode Title="runrvar&lt;T&gt; method" Url="html/459863ad-bd31-7415-1456-3a35586149c8.htm" />
+  <HelpKINode Title="runrvarIO(Of T) method" Url="html/4cb262e2-9241-5336-cf2d-cca41feaa931.htm" />
+  <HelpKINode Title="runrvarIO&lt;T&gt; method" Url="html/4cb262e2-9241-5336-cf2d-cca41feaa931.htm" />
+  <HelpKINode Title="RVar class">
+    <HelpKINode Title="RVar Class" Url="html/929775f3-9565-b3cd-8ff5-b83f9e3a9c2f.htm" />
+    <HelpKINode Title="about RVar class" Url="html/929775f3-9565-b3cd-8ff5-b83f9e3a9c2f.htm" />
+    <HelpKINode Title="methods" Url="html/786d5a9c-360e-e608-a74f-31c069668393.htm" />
+    <HelpKINode Title="properties" Url="html/829d0b8d-4aa4-bb87-d3c1-c649f9335859.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVar(Of T) interface">
+    <HelpKINode Title="RVar(T) Interface" Url="html/61aeb3d1-1146-1827-669b-664a5ed30e61.htm" />
+    <HelpKINode Title="about RVar(Of T) interface" Url="html/61aeb3d1-1146-1827-669b-664a5ed30e61.htm" />
+    <HelpKINode Title="methods" Url="html/33b222cb-05d7-e6ef-9bc8-0777bef20233.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVar(Of T).Sample method" Url="html/7651d5da-4768-de29-0b64-d89202c19ceb.htm" />
+  <HelpKINode Title="RVar.apply(Of T, U) method" Url="html/c5770155-b450-99d1-6584-f452b33a56b2.htm" />
+  <HelpKINode Title="RVar.apply&lt;T, U&gt; method" Url="html/c5770155-b450-99d1-6584-f452b33a56b2.htm" />
+  <HelpKINode Title="RVar.CoinFlip property" Url="html/bf5303ba-797d-8786-a5dd-7bbb2750752e.htm" />
+  <HelpKINode Title="RVar.concatMap(Of T, U) method" Url="html/f5853a71-4791-a7a3-d1c7-9dcb46994a20.htm" />
+  <HelpKINode Title="RVar.concatMap&lt;T, U&gt; method" Url="html/f5853a71-4791-a7a3-d1c7-9dcb46994a20.htm" />
+  <HelpKINode Title="RVar.constant(Of T) method" Url="html/650dc2f1-fb69-2a90-7afc-c81a4b263b24.htm" />
+  <HelpKINode Title="RVar.constant&lt;T&gt; method" Url="html/650dc2f1-fb69-2a90-7afc-c81a4b263b24.htm" />
+  <HelpKINode Title="RVar.Exponential method" Url="html/6a6ec774-3eb3-33f6-e391-224a24fa007a.htm" />
+  <HelpKINode Title="RVar.filter(Of T) method" Url="html/478531a1-2cad-d803-20df-8f91aef3055c.htm" />
+  <HelpKINode Title="RVar.filter&lt;T&gt; method" Url="html/478531a1-2cad-d803-20df-8f91aef3055c.htm" />
+  <HelpKINode Title="RVar.filterRandomly(Of T) method" Url="html/a65ed96c-0c29-06dc-525b-3a3218bd3a28.htm" />
+  <HelpKINode Title="RVar.filterRandomly&lt;T&gt; method" Url="html/a65ed96c-0c29-06dc-525b-3a3218bd3a28.htm" />
+  <HelpKINode Title="RVar.map(Of T, U) method" Url="html/47d4b83d-33e1-c367-2bd1-8b2079c3f546.htm" />
+  <HelpKINode Title="RVar.map&lt;T, U&gt; method" Url="html/47d4b83d-33e1-c367-2bd1-8b2079c3f546.htm" />
+  <HelpKINode Title="RVar.Normal method" Url="html/8edaa9b5-116d-0619-9dbb-48c44dd3cd58.htm" />
+  <HelpKINode Title="RVar.oneOf(Of T) method" Url="html/f4ceb4fb-eed9-1bd4-0887-b4aac2ff4343.htm" />
+  <HelpKINode Title="RVar.oneOf&lt;T&gt; method" Url="html/f4ceb4fb-eed9-1bd4-0887-b4aac2ff4343.htm" />
+  <HelpKINode Title="RVar.oneOfWeighted(Of T) method" Url="html/4340b026-91cb-1c24-7fcd-78d587f5f79e.htm" />
+  <HelpKINode Title="RVar.oneOfWeighted&lt;T&gt; method" Url="html/4340b026-91cb-1c24-7fcd-78d587f5f79e.htm" />
+  <HelpKINode Title="RVar.probability method" Url="html/190a532a-3e14-2217-a89b-34810567321c.htm" />
+  <HelpKINode Title="RVar.randomly property" Url="html/0a304f3e-5715-abf5-644e-44ca5a587b01.htm" />
+  <HelpKINode Title="RVar.RandomlySignedDouble method" Url="html/5569acde-9c87-698d-0a5a-c6f13a320817.htm" />
+  <HelpKINode Title="RVar.RandomlySignedFloat method" Url="html/e30fc680-684c-cbe7-16d4-aa83a62e1aff.htm" />
+  <HelpKINode Title="RVar.RandomlySignedInt method" Url="html/5f9ec764-09c8-55ed-d364-10bd32899fca.htm" />
+  <HelpKINode Title="RVar.repeat(Of T) method" Url="html/36ccf8ec-920c-a8fd-0618-730c86b60639.htm" />
+  <HelpKINode Title="RVar.repeat&lt;T&gt; method" Url="html/36ccf8ec-920c-a8fd-0618-730c86b60639.htm" />
+  <HelpKINode Title="RVar.runrvar(Of T) method" Url="html/459863ad-bd31-7415-1456-3a35586149c8.htm" />
+  <HelpKINode Title="RVar.runrvar&lt;T&gt; method" Url="html/459863ad-bd31-7415-1456-3a35586149c8.htm" />
+  <HelpKINode Title="RVar.runrvarIO(Of T) method" Url="html/4cb262e2-9241-5336-cf2d-cca41feaa931.htm" />
+  <HelpKINode Title="RVar.runrvarIO&lt;T&gt; method" Url="html/4cb262e2-9241-5336-cf2d-cca41feaa931.htm" />
+  <HelpKINode Title="RVar.sequence(Of T) method" Url="html/a812e3ae-87ee-9145-1f4b-7519933c0bfe.htm" />
+  <HelpKINode Title="RVar.sequence&lt;T&gt; method" Url="html/a812e3ae-87ee-9145-1f4b-7519933c0bfe.htm" />
+  <HelpKINode Title="RVar.sequenceParallel(Of T) method" Url="html/c3c82631-8787-2940-1ac1-5d74882447c9.htm" />
+  <HelpKINode Title="RVar.sequenceParallel&lt;T&gt; method" Url="html/c3c82631-8787-2940-1ac1-5d74882447c9.htm" />
+  <HelpKINode Title="RVar.sequenceStreaming(Of T) method" Url="html/93bedef2-7b04-4d3d-1a41-8b693916c568.htm" />
+  <HelpKINode Title="RVar.sequenceStreaming&lt;T&gt; method" Url="html/93bedef2-7b04-4d3d-1a41-8b693916c568.htm" />
+  <HelpKINode Title="RVar.shuffle(Of T) method" Url="html/aaa2b2d7-27d7-ccd1-bc26-81a04b2ae918.htm" />
+  <HelpKINode Title="RVar.shuffle&lt;T&gt; method" Url="html/aaa2b2d7-27d7-ccd1-bc26-81a04b2ae918.htm" />
+  <HelpKINode Title="RVar.StandardNormal property" Url="html/0ebaeda5-d2d4-3dda-c5ca-5a1fe6f283d5.htm" />
+  <HelpKINode Title="RVar.StdUniform property" Url="html/137808c0-4319-f4e8-f991-5edfcccb39d2.htm" />
+  <HelpKINode Title="RVar.tableColumn(Of T) method" Url="html/4b255ebe-216e-deb1-d466-dd2fbf374bb1.htm" />
+  <HelpKINode Title="RVar.tableColumn&lt;T&gt; method" Url="html/4b255ebe-216e-deb1-d466-dd2fbf374bb1.htm" />
+  <HelpKINode Title="RVar.tableColumnWise(Of T) method" Url="html/038112a3-0bf1-563f-3c31-98ddb69ae103.htm" />
+  <HelpKINode Title="RVar.tableColumnWise&lt;T&gt; method" Url="html/038112a3-0bf1-563f-3c31-98ddb69ae103.htm" />
+  <HelpKINode Title="RVar.tableRow(Of T) method" Url="html/18434331-3a9d-e556-7379-1cb737070717.htm" />
+  <HelpKINode Title="RVar.tableRow&lt;T&gt; method" Url="html/18434331-3a9d-e556-7379-1cb737070717.htm" />
+  <HelpKINode Title="RVar.tableRowWise(Of T) method" Url="html/7ede679f-fce0-4fc0-6544-feb1b348ec75.htm" />
+  <HelpKINode Title="RVar.tableRowWise&lt;T&gt; method" Url="html/7ede679f-fce0-4fc0-6544-feb1b348ec75.htm" />
+  <HelpKINode Title="RVar.take(Of T) method" Url="html/24068fd3-9305-57fd-c75f-b978928075e1.htm" />
+  <HelpKINode Title="RVar.take&lt;T&gt; method" Url="html/24068fd3-9305-57fd-c75f-b978928075e1.htm" />
+  <HelpKINode Title="RVar.takeParallel(Of T) method" Url="html/b6529f13-1cf1-d1ec-00b1-d0653d478901.htm" />
+  <HelpKINode Title="RVar.takeParallel&lt;T&gt; method" Url="html/b6529f13-1cf1-d1ec-00b1-d0653d478901.htm" />
+  <HelpKINode Title="RVar.UniformInt method" Url="html/0a23efd7-3e4a-dadd-b27e-a6361716e633.htm" />
+  <HelpKINode Title="RVar.UniformInterval method" Url="html/20146dbb-39c5-2087-7fb1-c2c4e47d70e3.htm" />
+  <HelpKINode Title="RVar.UniformIntervalClosed method" Url="html/04f19ac1-35b6-b466-d931-532ac83f1cf1.htm" />
+  <HelpKINode Title="RVar.UniformIntervalOpen method" Url="html/dda9a14d-05f6-9d37-61fd-372e6b107cb3.htm" />
+  <HelpKINode Title="RVar.UniformZeroAndUpBelow method" Url="html/a267ccff-46ea-3e43-4269-dee2c2e06d22.htm" />
+  <HelpKINode Title="RVar.UniformZeroToOne property" Url="html/325815d6-412f-fee9-05f9-8b455dc8be5c.htm" />
+  <HelpKINode Title="RVar.union(Of T) method" Url="html/0f01d716-e884-5324-7c91-e3f715bb8fd1.htm" />
+  <HelpKINode Title="RVar.union&lt;T&gt; method" Url="html/0f01d716-e884-5324-7c91-e3f715bb8fd1.htm" />
+  <HelpKINode Title="RVar.unionWeighted(Of T) method" Url="html/0c61a466-4693-5847-7e81-707d62c2923b.htm" />
+  <HelpKINode Title="RVar.unionWeighted&lt;T&gt; method" Url="html/0c61a466-4693-5847-7e81-707d62c2923b.htm" />
+  <HelpKINode Title="RVar.Weibull method" Url="html/41b232d5-5c9e-d19d-c32d-be72cc205ac6.htm" />
+  <HelpKINode Title="RVar.zip(Of T, U) method" Url="html/e2cbae22-09ac-e246-4b41-fa92b5fb3e15.htm" />
+  <HelpKINode Title="RVar.zip3(Of T, U, V) method" Url="html/562a0839-f041-25ec-6672-b845f8046ae2.htm" />
+  <HelpKINode Title="RVar.zip3&lt;T, U, V&gt; method" Url="html/562a0839-f041-25ec-6672-b845f8046ae2.htm" />
+  <HelpKINode Title="RVar.zip&lt;T, U&gt; method" Url="html/e2cbae22-09ac-e246-4b41-fa92b5fb3e15.htm" />
+  <HelpKINode Title="RVar&lt;T&gt; interface">
+    <HelpKINode Title="RVar(T) Interface" Url="html/61aeb3d1-1146-1827-669b-664a5ed30e61.htm" />
+    <HelpKINode Title="about RVar&lt;T&gt; interface" Url="html/61aeb3d1-1146-1827-669b-664a5ed30e61.htm" />
+    <HelpKINode Title="methods" Url="html/33b222cb-05d7-e6ef-9bc8-0777bef20233.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVar&lt;T&gt;.Sample method" Url="html/7651d5da-4768-de29-0b64-d89202c19ceb.htm" />
+  <HelpKINode Title="RVarAST class">
+    <HelpKINode Title="RVarAST Class" Url="html/6c524ba6-00bb-8a55-ed2b-a5606c702ee8.htm" />
+    <HelpKINode Title="about RVarAST class" Url="html/6c524ba6-00bb-8a55-ed2b-a5606c702ee8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.ApplyVar(Of T, U) class">
+    <HelpKINode Title="RVarAST.ApplyVar(T, U) Class" Url="html/4bdc455e-a300-b8e2-b246-a58e6b8e8e52.htm" />
+    <HelpKINode Title="about RVarAST.ApplyVar(Of T, U) class" Url="html/4bdc455e-a300-b8e2-b246-a58e6b8e8e52.htm" />
+    <HelpKINode Title="constructor" Url="html/cbdf3886-c2f7-0c08-1f01-1ed9501fc945.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.ApplyVar(Of T, U).ApplyVar constructor" Url="html/cbdf3886-c2f7-0c08-1f01-1ed9501fc945.htm" />
+  <HelpKINode Title="RVarAST.ApplyVar&lt;T, U&gt; class">
+    <HelpKINode Title="RVarAST.ApplyVar(T, U) Class" Url="html/4bdc455e-a300-b8e2-b246-a58e6b8e8e52.htm" />
+    <HelpKINode Title="about RVarAST.ApplyVar&lt;T, U&gt; class" Url="html/4bdc455e-a300-b8e2-b246-a58e6b8e8e52.htm" />
+    <HelpKINode Title="constructor" Url="html/cbdf3886-c2f7-0c08-1f01-1ed9501fc945.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.ApplyVar&lt;T, U&gt;.ApplyVar constructor" Url="html/cbdf3886-c2f7-0c08-1f01-1ed9501fc945.htm" />
+  <HelpKINode Title="RVarAST.BindVar(Of T, U) class">
+    <HelpKINode Title="RVarAST.BindVar(T, U) Class" Url="html/00281ef3-b2d1-0d3c-2c3e-ac386358e6ee.htm" />
+    <HelpKINode Title="about RVarAST.BindVar(Of T, U) class" Url="html/00281ef3-b2d1-0d3c-2c3e-ac386358e6ee.htm" />
+    <HelpKINode Title="constructor" Url="html/7fbfe9c6-3045-c5f5-d243-c72a0257f690.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.BindVar(Of T, U).BindVar constructor" Url="html/7fbfe9c6-3045-c5f5-d243-c72a0257f690.htm" />
+  <HelpKINode Title="RVarAST.BindVar&lt;T, U&gt; class">
+    <HelpKINode Title="RVarAST.BindVar(T, U) Class" Url="html/00281ef3-b2d1-0d3c-2c3e-ac386358e6ee.htm" />
+    <HelpKINode Title="about RVarAST.BindVar&lt;T, U&gt; class" Url="html/00281ef3-b2d1-0d3c-2c3e-ac386358e6ee.htm" />
+    <HelpKINode Title="constructor" Url="html/7fbfe9c6-3045-c5f5-d243-c72a0257f690.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.BindVar&lt;T, U&gt;.BindVar constructor" Url="html/7fbfe9c6-3045-c5f5-d243-c72a0257f690.htm" />
+  <HelpKINode Title="RVarAST.CombineVar(Of T, U) class">
+    <HelpKINode Title="RVarAST.CombineVar(T, U) Class" Url="html/7f78192f-734c-4c0e-83c0-00c256590cfe.htm" />
+    <HelpKINode Title="about RVarAST.CombineVar(Of T, U) class" Url="html/7f78192f-734c-4c0e-83c0-00c256590cfe.htm" />
+    <HelpKINode Title="constructor" Url="html/17587dc2-80de-e7e5-0125-8e6866244639.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.CombineVar(Of T, U).CombineVar constructor" Url="html/17587dc2-80de-e7e5-0125-8e6866244639.htm" />
+  <HelpKINode Title="RVarAST.CombineVar&lt;T, U&gt; class">
+    <HelpKINode Title="RVarAST.CombineVar(T, U) Class" Url="html/7f78192f-734c-4c0e-83c0-00c256590cfe.htm" />
+    <HelpKINode Title="about RVarAST.CombineVar&lt;T, U&gt; class" Url="html/7f78192f-734c-4c0e-83c0-00c256590cfe.htm" />
+    <HelpKINode Title="constructor" Url="html/17587dc2-80de-e7e5-0125-8e6866244639.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.CombineVar&lt;T, U&gt;.CombineVar constructor" Url="html/17587dc2-80de-e7e5-0125-8e6866244639.htm" />
+  <HelpKINode Title="RVarAST.ConstVar(Of T) class">
+    <HelpKINode Title="RVarAST.ConstVar(T) Class" Url="html/701758bd-c5a3-51f1-c570-59a3a57d6dc1.htm" />
+    <HelpKINode Title="about RVarAST.ConstVar(Of T) class" Url="html/701758bd-c5a3-51f1-c570-59a3a57d6dc1.htm" />
+    <HelpKINode Title="constructor" Url="html/e4eef0cb-90d9-1b9e-ae48-cd3bc3364a10.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.ConstVar(Of T).ConstVar constructor" Url="html/e4eef0cb-90d9-1b9e-ae48-cd3bc3364a10.htm" />
+  <HelpKINode Title="RVarAST.ConstVar&lt;T&gt; class">
+    <HelpKINode Title="RVarAST.ConstVar(T) Class" Url="html/701758bd-c5a3-51f1-c570-59a3a57d6dc1.htm" />
+    <HelpKINode Title="about RVarAST.ConstVar&lt;T&gt; class" Url="html/701758bd-c5a3-51f1-c570-59a3a57d6dc1.htm" />
+    <HelpKINode Title="constructor" Url="html/e4eef0cb-90d9-1b9e-ae48-cd3bc3364a10.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.ConstVar&lt;T&gt;.ConstVar constructor" Url="html/e4eef0cb-90d9-1b9e-ae48-cd3bc3364a10.htm" />
+  <HelpKINode Title="RVarAST.MappedVar(Of T, U) class">
+    <HelpKINode Title="RVarAST.MappedVar(T, U) Class" Url="html/4e53ebd5-0bdc-0c69-9e67-83101ed0a3ea.htm" />
+    <HelpKINode Title="about RVarAST.MappedVar(Of T, U) class" Url="html/4e53ebd5-0bdc-0c69-9e67-83101ed0a3ea.htm" />
+    <HelpKINode Title="constructor" Url="html/9cd15241-ddea-1b97-5758-6518f912b415.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.MappedVar(Of T, U).MappedVar constructor" Url="html/9cd15241-ddea-1b97-5758-6518f912b415.htm" />
+  <HelpKINode Title="RVarAST.MappedVar&lt;T, U&gt; class">
+    <HelpKINode Title="RVarAST.MappedVar(T, U) Class" Url="html/4e53ebd5-0bdc-0c69-9e67-83101ed0a3ea.htm" />
+    <HelpKINode Title="about RVarAST.MappedVar&lt;T, U&gt; class" Url="html/4e53ebd5-0bdc-0c69-9e67-83101ed0a3ea.htm" />
+    <HelpKINode Title="constructor" Url="html/9cd15241-ddea-1b97-5758-6518f912b415.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.MappedVar&lt;T, U&gt;.MappedVar constructor" Url="html/9cd15241-ddea-1b97-5758-6518f912b415.htm" />
+  <HelpKINode Title="RVarAST.RandomlyBuilder class">
+    <HelpKINode Title="RVarAST.RandomlyBuilder Class" Url="html/07e5440a-4c92-b5a4-1fa9-12b7934b26e0.htm" />
+    <HelpKINode Title="about RVarAST.RandomlyBuilder class" Url="html/07e5440a-4c92-b5a4-1fa9-12b7934b26e0.htm" />
+    <HelpKINode Title="constructor" Url="html/02ddc5d7-4765-1436-b818-6b9b28984a77.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.RandomlyBuilder.RandomlyBuilder constructor" Url="html/02ddc5d7-4765-1436-b818-6b9b28984a77.htm" />
+  <HelpKINode Title="RVarAST.SequenceVar(Of T) class">
+    <HelpKINode Title="RVarAST.SequenceVar(T) Class" Url="html/80544aa7-55c3-5e14-471d-7d310e2f777c.htm" />
+    <HelpKINode Title="about RVarAST.SequenceVar(Of T) class" Url="html/80544aa7-55c3-5e14-471d-7d310e2f777c.htm" />
+    <HelpKINode Title="constructor" Url="html/9ac1c71d-db3b-e606-413c-c40b2f7ca5ea.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.SequenceVar(Of T).SequenceVar constructor" Url="html/9ac1c71d-db3b-e606-413c-c40b2f7ca5ea.htm" />
+  <HelpKINode Title="RVarAST.SequenceVar&lt;T&gt; class">
+    <HelpKINode Title="RVarAST.SequenceVar(T) Class" Url="html/80544aa7-55c3-5e14-471d-7d310e2f777c.htm" />
+    <HelpKINode Title="about RVarAST.SequenceVar&lt;T&gt; class" Url="html/80544aa7-55c3-5e14-471d-7d310e2f777c.htm" />
+    <HelpKINode Title="constructor" Url="html/9ac1c71d-db3b-e606-413c-c40b2f7ca5ea.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.SequenceVar&lt;T&gt;.SequenceVar constructor" Url="html/9ac1c71d-db3b-e606-413c-c40b2f7ca5ea.htm" />
+  <HelpKINode Title="RVarAST.Spark(Of T) class">
+    <HelpKINode Title="RVarAST.Spark(T) Class" Url="html/5e8dec16-30d5-2819-4a20-88cd0b353d3e.htm" />
+    <HelpKINode Title="about RVarAST.Spark(Of T) class" Url="html/5e8dec16-30d5-2819-4a20-88cd0b353d3e.htm" />
+    <HelpKINode Title="constructor" Url="html/32aca0b3-285c-75c2-73e3-cc2a19a4b576.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.Spark(Of T).Branch method" Url="html/8baa8a9a-a684-4920-8c4f-5fc089e86a9b.htm" />
+  <HelpKINode Title="RVarAST.Spark(Of T).Spark constructor" Url="html/32aca0b3-285c-75c2-73e3-cc2a19a4b576.htm" />
+  <HelpKINode Title="RVarAST.Spark&lt;T&gt; class">
+    <HelpKINode Title="RVarAST.Spark(T) Class" Url="html/5e8dec16-30d5-2819-4a20-88cd0b353d3e.htm" />
+    <HelpKINode Title="about RVarAST.Spark&lt;T&gt; class" Url="html/5e8dec16-30d5-2819-4a20-88cd0b353d3e.htm" />
+    <HelpKINode Title="constructor" Url="html/32aca0b3-285c-75c2-73e3-cc2a19a4b576.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.Spark&lt;T&gt;.Branch method" Url="html/8baa8a9a-a684-4920-8c4f-5fc089e86a9b.htm" />
+  <HelpKINode Title="RVarAST.Spark&lt;T&gt;.Spark constructor" Url="html/32aca0b3-285c-75c2-73e3-cc2a19a4b576.htm" />
+  <HelpKINode Title="RVarAST.StdUniformClass class">
+    <HelpKINode Title="RVarAST.StdUniformClass Class" Url="html/11c24bda-3266-aa5d-3ff5-632e39c9eb8a.htm" />
+    <HelpKINode Title="about RVarAST.StdUniformClass class" Url="html/11c24bda-3266-aa5d-3ff5-632e39c9eb8a.htm" />
+    <HelpKINode Title="constructor" Url="html/972350c8-207b-ace6-3b9f-18b5cddc2101.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.StdUniformClass.StdUniformClass constructor" Url="html/972350c8-207b-ace6-3b9f-18b5cddc2101.htm" />
+  <HelpKINode Title="RVarAST.Streaming(Of T) class">
+    <HelpKINode Title="RVarAST.Streaming(T) Class" Url="html/60c8cae4-830b-dd1a-e301-68864f3cb125.htm" />
+    <HelpKINode Title="about RVarAST.Streaming(Of T) class" Url="html/60c8cae4-830b-dd1a-e301-68864f3cb125.htm" />
+    <HelpKINode Title="constructor" Url="html/db3ccc5d-794c-4bf2-15cc-fd88957604e2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.Streaming(Of T).Streaming constructor" Url="html/db3ccc5d-794c-4bf2-15cc-fd88957604e2.htm" />
+  <HelpKINode Title="RVarAST.Streaming&lt;T&gt; class">
+    <HelpKINode Title="RVarAST.Streaming(T) Class" Url="html/60c8cae4-830b-dd1a-e301-68864f3cb125.htm" />
+    <HelpKINode Title="about RVarAST.Streaming&lt;T&gt; class" Url="html/60c8cae4-830b-dd1a-e301-68864f3cb125.htm" />
+    <HelpKINode Title="constructor" Url="html/db3ccc5d-794c-4bf2-15cc-fd88957604e2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.Streaming&lt;T&gt;.Streaming constructor" Url="html/db3ccc5d-794c-4bf2-15cc-fd88957604e2.htm" />
+  <HelpKINode Title="RVarAST.StrictSequenceVar(Of T) class">
+    <HelpKINode Title="RVarAST.StrictSequenceVar(T) Class" Url="html/9396d515-abbe-9097-396b-41edc5651a2e.htm" />
+    <HelpKINode Title="about RVarAST.StrictSequenceVar(Of T) class" Url="html/9396d515-abbe-9097-396b-41edc5651a2e.htm" />
+    <HelpKINode Title="constructor" Url="html/a8d66d65-e152-b982-098f-36ec74f9fea5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.StrictSequenceVar(Of T).StrictSequenceVar constructor" Url="html/a8d66d65-e152-b982-098f-36ec74f9fea5.htm" />
+  <HelpKINode Title="RVarAST.StrictSequenceVar&lt;T&gt; class">
+    <HelpKINode Title="RVarAST.StrictSequenceVar(T) Class" Url="html/9396d515-abbe-9097-396b-41edc5651a2e.htm" />
+    <HelpKINode Title="about RVarAST.StrictSequenceVar&lt;T&gt; class" Url="html/9396d515-abbe-9097-396b-41edc5651a2e.htm" />
+    <HelpKINode Title="constructor" Url="html/a8d66d65-e152-b982-098f-36ec74f9fea5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.StrictSequenceVar&lt;T&gt;.StrictSequenceVar constructor" Url="html/a8d66d65-e152-b982-098f-36ec74f9fea5.htm" />
+  <HelpKINode Title="RVarAST.TakeVar(Of T) class">
+    <HelpKINode Title="RVarAST.TakeVar(T) Class" Url="html/0f3014fa-2c5e-cab5-e4e8-6e871c1685b2.htm" />
+    <HelpKINode Title="about RVarAST.TakeVar(Of T) class" Url="html/0f3014fa-2c5e-cab5-e4e8-6e871c1685b2.htm" />
+    <HelpKINode Title="constructor" Url="html/272568de-5bee-6ab9-0579-73bbdfaf4627.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.TakeVar(Of T).TakeVar constructor" Url="html/272568de-5bee-6ab9-0579-73bbdfaf4627.htm" />
+  <HelpKINode Title="RVarAST.TakeVar&lt;T&gt; class">
+    <HelpKINode Title="RVarAST.TakeVar(T) Class" Url="html/0f3014fa-2c5e-cab5-e4e8-6e871c1685b2.htm" />
+    <HelpKINode Title="about RVarAST.TakeVar&lt;T&gt; class" Url="html/0f3014fa-2c5e-cab5-e4e8-6e871c1685b2.htm" />
+    <HelpKINode Title="constructor" Url="html/272568de-5bee-6ab9-0579-73bbdfaf4627.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.TakeVar&lt;T&gt;.TakeVar constructor" Url="html/272568de-5bee-6ab9-0579-73bbdfaf4627.htm" />
+  <HelpKINode Title="RVarAST.WhileVar(Of T) class">
+    <HelpKINode Title="RVarAST.WhileVar(T) Class" Url="html/da46a9ea-e4b2-becf-93fe-eb114ccd0d7f.htm" />
+    <HelpKINode Title="about RVarAST.WhileVar(Of T) class" Url="html/da46a9ea-e4b2-becf-93fe-eb114ccd0d7f.htm" />
+    <HelpKINode Title="constructor" Url="html/ee9da0a8-7bf8-49d4-6e5c-baebf4336dc7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.WhileVar(Of T).WhileVar constructor" Url="html/ee9da0a8-7bf8-49d4-6e5c-baebf4336dc7.htm" />
+  <HelpKINode Title="RVarAST.WhileVar&lt;T&gt; class">
+    <HelpKINode Title="RVarAST.WhileVar(T) Class" Url="html/da46a9ea-e4b2-becf-93fe-eb114ccd0d7f.htm" />
+    <HelpKINode Title="about RVarAST.WhileVar&lt;T&gt; class" Url="html/da46a9ea-e4b2-becf-93fe-eb114ccd0d7f.htm" />
+    <HelpKINode Title="constructor" Url="html/ee9da0a8-7bf8-49d4-6e5c-baebf4336dc7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RVarAST.WhileVar&lt;T&gt;.WhileVar constructor" Url="html/ee9da0a8-7bf8-49d4-6e5c-baebf4336dc7.htm" />
+  <HelpKINode Title="Sample method" Url="html/7651d5da-4768-de29-0b64-d89202c19ceb.htm" />
+  <HelpKINode Title="sequence(Of T) method" Url="html/a812e3ae-87ee-9145-1f4b-7519933c0bfe.htm" />
+  <HelpKINode Title="sequence&lt;T&gt; method" Url="html/a812e3ae-87ee-9145-1f4b-7519933c0bfe.htm" />
+  <HelpKINode Title="sequenceParallel(Of T) method" Url="html/c3c82631-8787-2940-1ac1-5d74882447c9.htm" />
+  <HelpKINode Title="sequenceParallel&lt;T&gt; method" Url="html/c3c82631-8787-2940-1ac1-5d74882447c9.htm" />
+  <HelpKINode Title="sequenceStreaming(Of T) method" Url="html/93bedef2-7b04-4d3d-1a41-8b693916c568.htm" />
+  <HelpKINode Title="sequenceStreaming&lt;T&gt; method" Url="html/93bedef2-7b04-4d3d-1a41-8b693916c568.htm" />
+  <HelpKINode Title="SequenceVar(Of T) class">
+    <HelpKINode Title="methods" Url="html/2cb27fdc-8e8f-2665-d846-57e429c8ec16.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SequenceVar&lt;T&gt; class">
+    <HelpKINode Title="methods" Url="html/2cb27fdc-8e8f-2665-d846-57e429c8ec16.htm" />
+  </HelpKINode>
+  <HelpKINode Title="shuffle(Of T) method" Url="html/aaa2b2d7-27d7-ccd1-bc26-81a04b2ae918.htm" />
+  <HelpKINode Title="shuffle&lt;T&gt; method" Url="html/aaa2b2d7-27d7-ccd1-bc26-81a04b2ae918.htm" />
+  <HelpKINode Title="Spark(Of T) class">
+    <HelpKINode Title="methods" Url="html/0d697168-47a4-3cfb-8fab-e59a8946c86e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Spark&lt;T&gt; class">
+    <HelpKINode Title="methods" Url="html/0d697168-47a4-3cfb-8fab-e59a8946c86e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StandardNormal property" Url="html/0ebaeda5-d2d4-3dda-c5ca-5a1fe6f283d5.htm" />
+  <HelpKINode Title="StdUniform property" Url="html/137808c0-4319-f4e8-f991-5edfcccb39d2.htm" />
+  <HelpKINode Title="StdUniformClass class">
+    <HelpKINode Title="methods" Url="html/74c96dc2-2772-e16c-dd83-b90b8e401dd0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Streaming(Of T) class">
+    <HelpKINode Title="methods" Url="html/0deb0ae8-9f60-6461-240e-0d83300a154a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Streaming&lt;T&gt; class">
+    <HelpKINode Title="methods" Url="html/0deb0ae8-9f60-6461-240e-0d83300a154a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StrictSequenceVar(Of T) class">
+    <HelpKINode Title="methods" Url="html/b4672f61-c62f-aa67-de16-1bcf8e54a196.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StrictSequenceVar&lt;T&gt; class">
+    <HelpKINode Title="methods" Url="html/b4672f61-c62f-aa67-de16-1bcf8e54a196.htm" />
+  </HelpKINode>
+  <HelpKINode Title="tableColumn(Of T) method" Url="html/4b255ebe-216e-deb1-d466-dd2fbf374bb1.htm" />
+  <HelpKINode Title="tableColumn&lt;T&gt; method" Url="html/4b255ebe-216e-deb1-d466-dd2fbf374bb1.htm" />
+  <HelpKINode Title="tableColumnWise(Of T) method" Url="html/038112a3-0bf1-563f-3c31-98ddb69ae103.htm" />
+  <HelpKINode Title="tableColumnWise&lt;T&gt; method" Url="html/038112a3-0bf1-563f-3c31-98ddb69ae103.htm" />
+  <HelpKINode Title="tableRow(Of T) method" Url="html/18434331-3a9d-e556-7379-1cb737070717.htm" />
+  <HelpKINode Title="tableRow&lt;T&gt; method" Url="html/18434331-3a9d-e556-7379-1cb737070717.htm" />
+  <HelpKINode Title="tableRowWise(Of T) method" Url="html/7ede679f-fce0-4fc0-6544-feb1b348ec75.htm" />
+  <HelpKINode Title="tableRowWise&lt;T&gt; method" Url="html/7ede679f-fce0-4fc0-6544-feb1b348ec75.htm" />
+  <HelpKINode Title="take(Of T) method" Url="html/24068fd3-9305-57fd-c75f-b978928075e1.htm" />
+  <HelpKINode Title="take&lt;T&gt; method" Url="html/24068fd3-9305-57fd-c75f-b978928075e1.htm" />
+  <HelpKINode Title="takeParallel(Of T) method" Url="html/b6529f13-1cf1-d1ec-00b1-d0653d478901.htm" />
+  <HelpKINode Title="takeParallel&lt;T&gt; method" Url="html/b6529f13-1cf1-d1ec-00b1-d0653d478901.htm" />
+  <HelpKINode Title="TakeVar(Of T) class">
+    <HelpKINode Title="methods" Url="html/5b995900-b229-242a-5b78-b09f0ac2dd43.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TakeVar&lt;T&gt; class">
+    <HelpKINode Title="methods" Url="html/5b995900-b229-242a-5b78-b09f0ac2dd43.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Twister class">
+    <HelpKINode Title="Twister Class" Url="html/e481e9a7-33be-0bb1-6973-1065a8012789.htm" />
+    <HelpKINode Title="about Twister class" Url="html/e481e9a7-33be-0bb1-6973-1065a8012789.htm" />
+    <HelpKINode Title="methods" Url="html/52608660-fa19-13b7-9c3c-fedc65cc2e75.htm" />
+  </HelpKINode>
+  <HelpKINode Title="twister method" Url="html/19ebe168-e1fe-66e2-125b-b5d45654a159.htm" />
+  <HelpKINode Title="Twister.twister method" Url="html/19ebe168-e1fe-66e2-125b-b5d45654a159.htm" />
+  <HelpKINode Title="UniformInt method" Url="html/0a23efd7-3e4a-dadd-b27e-a6361716e633.htm" />
+  <HelpKINode Title="UniformInterval method" Url="html/20146dbb-39c5-2087-7fb1-c2c4e47d70e3.htm" />
+  <HelpKINode Title="UniformIntervalClosed method" Url="html/04f19ac1-35b6-b466-d931-532ac83f1cf1.htm" />
+  <HelpKINode Title="UniformIntervalOpen method" Url="html/dda9a14d-05f6-9d37-61fd-372e6b107cb3.htm" />
+  <HelpKINode Title="UniformZeroAndUpBelow method" Url="html/a267ccff-46ea-3e43-4269-dee2c2e06d22.htm" />
+  <HelpKINode Title="UniformZeroToOne property" Url="html/325815d6-412f-fee9-05f9-8b455dc8be5c.htm" />
+  <HelpKINode Title="union(Of T) method" Url="html/0f01d716-e884-5324-7c91-e3f715bb8fd1.htm" />
+  <HelpKINode Title="union&lt;T&gt; method" Url="html/0f01d716-e884-5324-7c91-e3f715bb8fd1.htm" />
+  <HelpKINode Title="unionWeighted(Of T) method" Url="html/0c61a466-4693-5847-7e81-707d62c2923b.htm" />
+  <HelpKINode Title="unionWeighted&lt;T&gt; method" Url="html/0c61a466-4693-5847-7e81-707d62c2923b.htm" />
+  <HelpKINode Title="version">
+    <HelpKINode Title="1.0.0.0" Url="html/d9714172-b6d8-4320-911a-76a323efa173.htm" />
+    <HelpKINode Title="history" Url="html/eceb61be-e17c-40b6-894e-6a58e76adadc.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Weibull method" Url="html/41b232d5-5c9e-d19d-c32d-be72cc205ac6.htm" />
+  <HelpKINode Title="Welcome" Url="html/fc1c9a2f-8e10-47f9-8b65-017decbf9057.htm" />
+  <HelpKINode Title="WhileVar(Of T) class">
+    <HelpKINode Title="methods" Url="html/70c0b2fd-b555-b9cb-8bea-fd835a65dc47.htm" />
+  </HelpKINode>
+  <HelpKINode Title="WhileVar&lt;T&gt; class">
+    <HelpKINode Title="methods" Url="html/70c0b2fd-b555-b9cb-8bea-fd835a65dc47.htm" />
+  </HelpKINode>
+  <HelpKINode Title="zip(Of T, U) method" Url="html/e2cbae22-09ac-e246-4b41-fa92b5fb3e15.htm" />
+  <HelpKINode Title="zip3(Of T, U, V) method" Url="html/562a0839-f041-25ec-6672-b845f8046ae2.htm" />
+  <HelpKINode Title="zip3&lt;T, U, V&gt; method" Url="html/562a0839-f041-25ec-6672-b845f8046ae2.htm" />
+  <HelpKINode Title="zip&lt;T, U&gt; method" Url="html/e2cbae22-09ac-e246-4b41-fa92b5fb3e15.htm" />
+</HelpKI>

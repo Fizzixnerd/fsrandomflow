@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topic id="fc1c9a2f-8e10-47f9-8b65-017decbf9057" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<!--<para>This is a sample conceptual topic.  You can use this as a starting point for adding more conceptual
+content to your help project.</para>-->
+      <para>Welcome to the documentation for the FsRandomFlow library. It is still very much a work in progress.
+      Most of this is automatically generated using the </para>
+		</introduction>
+
+		<section>
+			<title>Getting Started</title>
+			<content>
+				<!--<para>To get started, add a documentation source to the project (a Visual Studio solution, project, or
+assembly and XML comments file).  See the <legacyBold>Getting Started</legacyBold> topics in the Sandcastle Help
+File Builder's help file for more information.  The following default items are included in this project:</para>-->
+        <para>Open both the <codeInline>FsRandomFlow</codeInline> namespace and the <codeInline>FsRandomFlow.RVar</codeInline>
+        module.
+        Once you have done this, the <codeEntityReference qualifyHint="false">P:FsRandomFlow.RVar.randomly</codeEntityReference> builder will let you
+        compose in existing <codeEntityReference qualifyHint="false">T:FsRandomFlow.RVar`1</codeEntityReference> values of various types to build ones of your own.
+        To run an <codeEntityReference qualifyHint="false">T:FsRandomFlow.RVar`1</codeEntityReference> value, use one of 
+        <codeEntityReference qualifyHint="false" autoUpgrade="true">M:FsRandomFlow.RVar.runrvar``1(System.Int32,FsRandomFlow.RVar{``0})</codeEntityReference> or
+        <codeEntityReference qualifyHint="false" autoUpgrade="true">M:FsRandomFlow.RVar.runrvarIO``1(FsRandomFlow.RVar{``0})</codeEntityReference>, supplying a seed 
+        yourself or getting a seed from the current time respectively.</para>
+				<!--<list class="bullet">
+					<listItem>
+						<para><localUri>ContentLayout.content</localUri> - Use the content layout file to manage the
+conceptual content in the project and define its layout in the table of contents.</para>
+					</listItem>
+
+					<listItem>
+						<para>The <localUri>.\media</localUri> folder - Place images in this folder that you will reference
+from conceptual content using <codeInline>medialLink</codeInline> or <codeInline>mediaLinkInline</codeInline>
+elements.  If you will not have any images in the file, you may remove this folder.</para>
+					</listItem>
+
+					<listItem>
+						<para>The <localUri>.\icons</localUri> folder - This contains a default logo for the help file.  You
+may replace it or remove it and the folder if not wanted.  If removed or if you change the file name, update
+the <ui>Transform Args</ui> project properties page by removing or changing the filename in the
+<codeInline>logoFile</codeInline> transform argument.  Note that unlike images referenced from conceptual topics,
+the logo file should have its <legacyBold>BuildAction</legacyBold> property set to <codeInline>Content</codeInline>.</para>
+					</listItem>
+
+					<listItem>
+						<para>The <localUri>.\Content</localUri> folder - Use this to store your conceptual topics.  You may
+name the files and organize them however you like.  One suggestion is to lay the files out on disk as you have
+them in the content layout file as shown in this project but the choice is yours.  Files can be added via the
+Solution Explorer or from within the content layout file editor.  Files must appear in the content layout file
+in order to be compiled into the help file.</para>
+					</listItem>
+				</list>
+
+				<para>See the <legacyBold>Conceptual Content</legacyBold> topics in the Sandcastle Help File Builder's
+help file for more information.  See the <legacyBold> Sandcastle MAML Guide</legacyBold> for details on Microsoft
+Assistance Markup Language (MAML) which is used to create these topics.</para>-->
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="eceb61be-e17c-40b6-894e-6a58e76adadc" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

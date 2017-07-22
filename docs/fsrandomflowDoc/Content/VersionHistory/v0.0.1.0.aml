@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d9714172-b6d8-4320-911a-76a323efa173" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>Version 0.0.1.0 was released on [TODO: Date].
+			</para>
+		</introduction>
+
+		<section>
+			<title>Changes in This Release</title>
+			<content>
+
+				<list class="bullet">
+					<listItem>
+						<para>This is the first release with HTML documentation. The project structure is being reorganized, anticipating refactoring.</para>
+					</listItem>
+
+				</list>
+
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="eceb61be-e17c-40b6-894e-6a58e76adadc" />
+		</relatedTopics>
+
+	</developerConceptualDocument>
+</topic>

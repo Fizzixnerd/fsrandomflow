@@ -22,21 +22,40 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug-Canon|Any CPU = Debug-Canon|Any CPU
+		Debug-Starfield|Any CPU = Debug-Starfield|Any CPU
+		Docs|Any CPU = Docs|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Debug-Canon|Any CPU.ActiveCfg = Debug-Canon|Any CPU
+		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Debug-Starfield|Any CPU.ActiveCfg = Debug-Starfield|Any CPU
+		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Docs|Any CPU.ActiveCfg = Docs Only|Any CPU
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB8FF1B-8D53-446E-A9C6-C7275F9E5C04}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Debug-Canon|Any CPU.ActiveCfg = Debug-Canon|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Debug-Canon|Any CPU.Build.0 = Debug-Canon|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Debug-Starfield|Any CPU.ActiveCfg = Debug-Starfield|Any CPU
+		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Docs|Any CPU.ActiveCfg = Docs Only|Any CPU
 		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC7A141-F19C-43C0-84B8-03CE114D9B15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Debug-Canon|Any CPU.ActiveCfg = Debug-Canon|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Debug-Starfield|Any CPU.ActiveCfg = Debug-Starfield|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Docs|Any CPU.ActiveCfg = Docs Only|Any CPU
+		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Docs|Any CPU.Build.0 = Docs Only|Any CPU
 		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FCD1C83-5150-4E3B-A032-A4FFC6893A1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug-Canon|Any CPU.ActiveCfg = Debug-Canon|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug-Canon|Any CPU.Build.0 = Debug-Canon|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug-Starfield|Any CPU.ActiveCfg = Debug-Starfield|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Debug-Starfield|Any CPU.Build.0 = Debug-Starfield|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Docs|Any CPU.ActiveCfg = Docs Only|Any CPU
+		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Docs|Any CPU.Build.0 = Docs Only|Any CPU
 		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CF1461C-8E8D-41F5-B7FD-42C853EEFA72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
