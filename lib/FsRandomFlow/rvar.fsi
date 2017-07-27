@@ -333,6 +333,14 @@ namespace FsRandomFlow
         ///A random variable that, when sampled, yields a double between 0 and 1,
         ///inclusive
         val UniformZeroToOne : RVar<float>
+
+        ///A random variable that, when sampled, yields a double between 0 and 1,
+        ///exclusive
+        val UniformAboveZeroBelowOne : RVar<float>
+
+        val UniformAboveZeroToOne : RVar<float>
+
+        val UniformZeroToBelowOne : RVar<float>
         
         ///<summary>A random variable that, when sampled, yields an
         ///double in between the two given bounds. All double

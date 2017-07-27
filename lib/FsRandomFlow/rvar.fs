@@ -270,3 +270,25 @@ module RVar =
     let Exponential(inverseScale) = map (fun x -> (-Math.Log(x))/inverseScale) UniformAboveZeroBelowOne
 
     let Weibull(k,lambda) = map (fun x -> lambda * (Math.Pow(-Math.Log(x),(1.0/k)))) UniformAboveZeroBelowOne
+
+    let Poisson(lambda) = 
+        let step = 500.0
+        let rec poissonStep (p,lambda,k) = randomly {
+                let k' = k+1
+                let! u = UniformAboveZeroBelowOne
+                let p' = p*u
+                if p' < Math.E && lambda > 0.0
+                then 
+                    if lambda > step 
+                    then
+                        let p'' = p' * Math.Exp(step)
+                        if(p'' > 1.0) then return! poissonStep(p'',lambda-step,k')
+                        else return k
+                    else
+                        let p'' = p' * Math.Exp(lambda)
+                        if(p'' > 1.0) then return! poissonStep(p'',-1.0,k')
+                        else return k
+                else if p' > 1.0 then return! poissonStep(p',lambda,k')
+                else return k
+            }
+        poissonStep (1.0,lambda,0)

@@ -76,7 +76,13 @@ module RVarAST =
         interface RVar<'T seq> with
             override this.Sample rsource = 
                 Seq.map(fun (x: RVar<'T>) -> x.Sample rsource) vs
-
+    
+    type UnfoldVar<'T,'State>(kleisli: 'State -> RVar<('T * 'State) option>, state: 'State) =
+        interface RVar<'T seq> with
+            override this.Sample rsource =
+                let gen = (Spark<_>.Branch rsource.Current).GetEnumerator()
+                Seq.unfold(fun x -> (kleisli x).Sample(gen)) state
+    
     type StrictSequenceVar<'T>(vs: RVar<'T> seq) =
         interface RVar<'T seq> with
             override this.Sample rsource =
