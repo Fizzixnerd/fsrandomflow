@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FsRandomFlow</RootNamespace>
     <AssemblyName>FsRandomFlow</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Name>FsRandomFlow</Name>
@@ -49,9 +49,9 @@
     <Compile Include="twister.fsi" />
     <Compile Include="twister.fs" />
     <Compile Include="types.fs" />
-    <Compile Include="rvar.fsi" />
-    <Compile Include="rvarAST.fs" />
-    <Compile Include="rvar.fs" />
+    <Compile Include="RVar.fsi" />
+    <Compile Include="RVarAST.fs" />
+    <Compile Include="RVar.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

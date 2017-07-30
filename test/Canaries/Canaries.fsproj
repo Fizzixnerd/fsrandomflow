@@ -93,6 +93,13 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\FsRandomFlow\FsRandomFlow.fsproj">
+      <Name>FsRandomFlow</Name>
+      <Project>{9cf1461c-8e8d-41f5-b7fd-42c853eefa72}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
