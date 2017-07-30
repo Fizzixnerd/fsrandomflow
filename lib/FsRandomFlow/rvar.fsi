@@ -418,5 +418,11 @@ namespace FsRandomFlow
         ///<returns>A random variable that, when sampled, gets a double from some Weibull
         ///distribution.</returns>
         val Weibull : (float * float) -> RVar<float>
-
-
+        
+        ///<summary>A random variable that, when sampled, gets a double from an 
+        /// Poisson distribution, which represents the number of times an event
+        /// actually happened for some given expected rate it should have happened.</param>
+        ///<param name="lambda">The number of times the event normally occurs.</param>
+        ///<returns>A random variable that, when sampled, gets a double from some Poisson
+        ///distribution.</returns>
+        val Poisson : float -> RVar<int>
