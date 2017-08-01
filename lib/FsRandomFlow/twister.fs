@@ -24,9 +24,11 @@ module Twister =
     let modulus x m =
         if x > 0 then x % m
         else (m + (x % m)) % m
-        
+    
+    type FrozenTwister(seed,w,n,m,r,a,b,c,s,t,d,u,l,f,state,head,uuid) =
+        class end
     // This is the write head for a particular mersenne twister thread
-    type TwistGen(seed,w,n,m,r,a,b,c,s,t,d,u,l,f) =
+    and TwistGen(seed,w,n,m,r,a,b,c,s,t,d,u,l,f) =
         // These will be used to create a streaming defn', w/ buffer
         let nextState mword word0 word1 = 
             let upper x = (x >>> r) <<< r
@@ -68,6 +70,7 @@ module Twister =
             |> Seq.iteri(fun v i -> arr.[i] <- v)
         let state = initSeq seed
         let mutable head = 0
+        //let mutable uuid = 0
         member this.ixRelative offset = 
             modulus (head + offset) n
         member this.incrHead() = head <- this.ixRelative 1

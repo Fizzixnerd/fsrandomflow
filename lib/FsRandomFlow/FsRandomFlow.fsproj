@@ -49,9 +49,9 @@
     <Compile Include="twister.fsi" />
     <Compile Include="twister.fs" />
     <Compile Include="types.fs" />
-    <Compile Include="RVar.fsi" />
-    <Compile Include="RVarAST.fs" />
-    <Compile Include="RVar.fs" />
+    <Compile Include="RVar1.fsi" />
+    <Compile Include="RVarAST1.fs" />
+    <Compile Include="RVar1.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
