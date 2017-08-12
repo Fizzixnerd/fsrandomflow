@@ -339,11 +339,13 @@ namespace FsRandomFlow
         ///exclusive
         val UniformAboveZeroBelowOne : RVar<float>
 
+        ///A random variable that, when sampled, yields a double above 0 to 1
         val UniformAboveZeroToOne : RVar<float>
 
+        ///A random variable that, when sampled, yields a double from less than 1, down to 0
         val UniformZeroToBelowOne : RVar<float>
         
-        ///<summary>A random variable that, when sampled, yields an
+        ///<summary>A random variable that, when sampled, yields a
         ///double in between the two given bounds. All double
         ///within these bounds have an equal chance of being selected.
         ///The bounds are given lowest first, then highest. You must
