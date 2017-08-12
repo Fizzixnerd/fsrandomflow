@@ -1,5 +1,6 @@
-﻿//Copyright (c) 2017 Barend Venter
+﻿//Copyright 2017 Barend Venter
 //This code liscensed under the MIT license, see LICENSE
+//Get it at github.com/barendventer/fsrandomflow
 
 namespace FsRandomFlow
 

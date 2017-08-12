@@ -1,6 +1,7 @@
-﻿// Copyright 2017, Barend Venter
-// This code is liscensed under the MIT liscense, see LISCENSE
-// You will need praeclarum's NGraphics library to run this demo, get it via NuGet
+﻿//Copyright 2017 Barend Venter
+//This code liscensed under the MIT license, see LICENSE
+//Get it at github.com/barendventer/fsrandomflow
+//You will need praeclarum's NGraphics library to run this demo, get it via NuGet
 
 open FsRandomFlow
 open FsRandomFlow.RVar

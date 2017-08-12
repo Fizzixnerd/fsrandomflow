@@ -1,6 +1,6 @@
-﻿//Copyright 2017, Barend Venter
-//This code is liscensed under the MIT license, see LICENSE
-
+﻿//Copyright 2017 Barend Venter
+//This code liscensed under the MIT license, see LICENSE
+//Get it at github.com/barendventer/fsrandomflow
 //You will need to install the NFugue library to build this, get it off NuGet
 //Either supply a seed, or just run it without arguments, and it'll play a short canon
 

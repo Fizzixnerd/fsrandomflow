@@ -1,5 +1,11 @@
-﻿namespace FsRandomFlowTests
+﻿//Copyright 2017 Barend Venter
+//This code liscensed under the MIT license, see LICENSE
+//Get it at github.com/barendventer/fsrandomflow
 
+namespace FsRandomFlowTests
+
+///Failing these tests do not mean your implementation is incorrect.
+///It does mean that the changes will force a new change in major version.
 module Canaries = 
     open Xunit
     open FsRandomFlow
@@ -11,6 +17,9 @@ module Canaries =
     let testRun rvar = 
         seeds
         |> Array.map (fun x -> RVar.runrvar x rvar)
+
+    //These tests should be updated each time the seeds are broken.
+    //Change the tests to ensure that they pass.
     
     //Distributions
 

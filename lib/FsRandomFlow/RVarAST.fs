@@ -1,4 +1,8 @@
-﻿namespace FsRandomFlow
+﻿//Copyright 2017 Barend Venter
+//This code liscensed under the MIT license, see LICENSE
+//Get it at github.com/barendventer/fsrandomflow
+
+namespace FsRandomFlow
 //This is how trees describing random calculations are built
 
 //Extra types of random variables could always be added to help with

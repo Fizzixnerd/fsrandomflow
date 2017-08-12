@@ -1,7 +1,8 @@
-﻿// Copyright 2017 Barend Venter
-// This code is licensed under the MIT license, see LICENSE
+﻿//Copyright 2017 Barend Venter
+//This code liscensed under the MIT license, see LICENSE
+//Get it at github.com/barendventer/fsrandomflow
 
-//Highlight this and right click "run in interactive" to open the library
+//Send this to fsi to play with the library with everything exposed
 #load "twister.fs"
 #load "types.fs"
 #load "RVarAST.fs"
