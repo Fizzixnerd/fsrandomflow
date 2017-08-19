@@ -429,3 +429,11 @@ namespace FsRandomFlow
         ///<returns>A random variable that, when sampled, gets a double from some Poisson
         ///distribution.</returns>
         val Poisson : float -> RVar<int>
+
+        ///<summary>A random variable that, when sampled, gets a double from a Chi square
+        /// distribution, which represents the variance of a sample of standard variates.
+        ///</summary>
+        ///<param name="degreesFreedom">The size of the sample</param>
+        ///<returns>A random variable, that, when sampled, gets a double from some Chi Square
+        ///distribution.</returns>
+        val ChiSquare : int -> RVar<float>

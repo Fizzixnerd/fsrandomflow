@@ -257,20 +257,60 @@ module RVar =
     let boxMueller = randomly {
             let! U1 = UniformAboveZeroBelowOne
             let! U2 = UniformAboveZeroBelowOne
-            return Math.Sqrt(-2.0*Math.Log(U1))*Math.Cos(2.0*Math.PI*U2)
+            return (Math.Sqrt(-2.0*Math.Log(U1))*Math.Cos(2.0*Math.PI*U2)
+                   ,Math.Sqrt(-2.0*Math.Log(U1))*Math.Sin(2.0*Math.PI*U2))
         }
 
 
 //TODO: Use ziggarut
-    let StandardNormal = boxMueller
+    let StandardNormal = map fst boxMueller
 //        ziggarut normalZiggarutSteps standardNormalPdf (normalFallback(normalZiggarutSteps.[1]))
 //        |> concatMap RandomlySignedDouble
 
     let Normal(mean,stdev) = map (fun outcome -> mean + stdev * outcome) StandardNormal
+    
+    let ln2 = Math.Log(2.0)
 
+    //Some code to fix "exponential" with in the future:
+
+    //Count the consecutive ones in an integer
+    //let countConsecutiveOnes n =
+    //    let rec go n acc = 
+    //        if (n &&& 1) = 1 then go (n >>> 1) (acc+1)
+    //        else acc
+    //    go n 0
+
+    //let rec DiscreteExponentialProc2Loop n = randomly {
+    //    let! integer = StdUniform
+    //    if integer = Int32.MaxValue then
+    //        return! DiscreteExponentialProc2Loop (n+7)
+    //    else return n + countConsecutiveOnes integer
+    //}
+
+    //How many ones occured consecutively?
+    //let DiscreteExponential2 = DiscreteExponentialProc2Loop 0
+       
+    //This is, surprisingly, very slow
     let Exponential(inverseScale) = map (fun x -> (-Math.Log(x))/inverseScale) UniformAboveZeroBelowOne
-
+    //Use this instead?
+    //let Exponential(inverseScale) = randomly { 
+    //        let median = ln2/inverseScale
+    //        let! offsetn = DiscreteExponential2
+    //        let offset = median * (float)offsetn
+    //        //Unfinished
+    //    }
+    //Or use ziggarut
+    
     let Weibull(k,lambda) = map (fun x -> lambda * (Math.Pow(-Math.Log(x),(1.0/k)))) UniformAboveZeroBelowOne
+
+    let ChiSquare(degreesFreedom) = randomly {
+        let! stdNorms = take (degreesFreedom/2) boxMueller
+        let! oddStdNorm = if degreesFreedom%2 = 0 then constant 0.0 else StandardNormal 
+        return stdNorms
+            |> Seq.map (fun (x,y) -> (x*x)+(y*y))
+            |> Seq.sum
+            |> (fun x -> x + (oddStdNorm*oddStdNorm))
+        }
 
     let Poisson(lambda) = 
         let step = 500.0
